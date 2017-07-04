@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--可自定义头布局，可有可没有-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/tv_rxbus_test_send"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="头布局"/>
+    </LinearLayout>
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/test_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_left_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="left_drawer" />
+
+            <TextView
+                android:id="@+id/tv_right_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="right_drawer" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/my_left_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="#00ffff">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/my_right_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="#00ff00">
+
+        </FrameLayout>
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

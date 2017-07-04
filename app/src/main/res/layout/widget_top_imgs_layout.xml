@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hacker"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="30dp"
+        android:textSize="22sp"
+        android:maxLines="2"
+        android:textColor="@color/white"
+        android:text="武汉比广州离迟到远,可它夏天比广州热啊,武汉比广州离迟到远,可它夏天比广州热啊,武汉比广州离迟到远,可它夏天比广州热啊,"
+        />
+
+</FrameLayout>

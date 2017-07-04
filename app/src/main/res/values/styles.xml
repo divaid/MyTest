@@ -1,0 +1,100 @@
+<resources>
+
+
+    <!-- Base application theme. 适用在使用 ActionBar上的 Activity-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--toolBar 主标题样式-->
+    <style name="Theme.ToolBar.Base.Title" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/color_red</item>
+    </style>
+
+    <!--toolBar 子标题样式-->
+    <style name="Theme.ToolBar.Base.Subtitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--侧滑菜单界面 TextView的样式-->
+    <style name="LeftDrawerFragment_textView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">@color/darker_gray</item>
+    </style>
+
+    <style name="ImageTranslucentTheme" parent="AppTheme">
+        <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
+    </style>
+
+    <!--设置底部弹出popupWindows的动画-->
+    <style name="anim_popup_bottombar">
+        <item name="android:windowEnterAnimation">@anim/popup_bottombar_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_bottombar_out</item>
+    </style>
+    <!--设置中间弹出PopupWindow的动画-->
+    <style name="anim_popup_centerbar">
+        <item name="android:windowEnterAnimation">@anim/popup_centerbar_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_centerbar_out</item>
+    </style>
+
+    <!--自定义CheckBox的样式-->
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_checkbox</item>
+    </style>
+
+    <!-- 自定义 TabLayout 样式 -->
+    <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="paddingEnd">10dp</item>
+        <item name="paddingStart">10dp</item>
+        <item name="tabBackground">@color/colorPrimary</item>
+        <item name="tabContentStart">10dp</item>
+        <item name="tabGravity">center</item>
+        <item name="tabIndicatorColor">#999900</item>
+        <item name="tabIndicatorHeight">6dp</item>
+        <item name="tabMaxWidth">@dimen/tab_max_width</item>
+        <item name="tabMinWidth">@dimen/tab_min_width</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabPaddingBottom">2dp</item>
+        <item name="tabPaddingEnd">10dp</item>
+        <item name="tabPaddingStart">10dp</item>
+        <item name="tabPaddingTop">15dp</item>
+        <item name="tabSelectedTextColor">#ffcc00</item>
+        <item name="tabTextAppearance">@style/CustomTabTextAppearance</item>
+        <item name="tabTextColor">#000066</item>
+    </style>
+    <!-- 自定义 TabText 的外观 -->
+    <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#006600</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <!--<style name="CustomTabLayoutStyle"parent="Widget.Design.TabLayout">
+        <item name="tabMaxWidth">@dimen/tab_max_width</item>
+        <item name="tabMinWidth">@dimen/tab_min_width</item>
+        <item name="tabIndicatorColor">android:color/holo_blue_bright</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="textAllCaps">true</item>
+    </style>-->
+
+</resources>

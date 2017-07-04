@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MyTest</string>
+    <string name="userName">david</string>
+    <string name="userEmail">david@163.com</string>
+    <string name="menu_search">查找</string>
+    <string name="menu_notifications">通知</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_about_us">关于</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="home">Home</string>
+    <string name="download">Download</string>
+    <string name="favourite">Favourite</string>
+    <string name="more">More</string>
+    <string name="settings">Settings</string>
+    <array name="testlist">
+        <item>DrawerTestActivity</item>
+        <item>SlideTestActivity</item>
+    </array>
+</resources>

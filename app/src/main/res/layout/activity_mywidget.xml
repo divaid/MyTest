@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/dragrecycler"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="可拖动切换位置RecyclerView"
+        android:textSize="18sp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/my_banner"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="banner"
+        android:textSize="18sp"
+        android:gravity="center"
+
+        />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/autoline"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="自动换行的ViewGroup"
+        android:textSize="18sp"
+        android:gravity="center"
+
+        />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/pulltorefresh"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="拖动刷新"
+        android:textSize="18sp"
+        android:gravity="center"
+
+        />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/wheelview"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="WheelView"
+        android:textSize="18sp"
+        android:gravity="center"
+
+        />
+</LinearLayout>

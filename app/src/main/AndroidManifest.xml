@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.david.mytest">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".application.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".test.wheeltest.WheelTestActivity"/>
+        <activity android:name=".activity.ActivityTestMyWidget"/>
+        <activity android:name=".test.banner.BannerTestActivity"/>
+        <activity android:name=".test.day_6_13.FiveNewViewActivity">
+
+        </activity>
+        <activity android:name=".activity.DetailActivity" />
+        <activity android:name=".test.decor_6_15.DecorTestActivity">
+
+        </activity>
+        <activity android:name=".test.snaphelpertest.SnapHelperTestActivity">
+
+        </activity>
+        <activity android:name=".test.pulltorefreshtest.PullRefreshTestActivity">
+
+        </activity>
+        <activity android:name=".test.day_6_27_autolinetest.AutoLineTestActivity">
+
+        </activity>
+        <activity android:name=".test.dragrecyclerview.activity.DragRecyclerTestActivity">
+
+        </activity>
+        <activity android:name=".test.slidetest.SlideTestActivity">
+
+        </activity>
+        <activity android:name=".test.drawtest.DrawerTestActivity">
+
+        </activity>
+        <activity android:name=".test.tablayouttest.TabLayoutTestActivity">
+
+        </activity>
+        <activity android:name=".test.TestActivity">
+
+        </activity>
+
+        <activity android:name=".test.pathblog.PathTestActivity">
+
+        </activity>
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:theme="@style/ImageTranslucentTheme" />
+        <activity android:name=".activity.PopupWindowTest" />
+        <activity android:name=".activity.DownLoadActivity" />
+        <activity android:name=".activity.AllCheckActivity" />
+        <activity android:name=".activity.TestFragmentActivity" />
+        <activity android:name=".activity.SingleCheckActivity" />
+
+        <service android:name=".service.UpdateService1" />
+        <service android:name=".update.UpdateService" />
+        <service
+            android:name=".download.DownloadService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.Android6NewWidget">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.Android6NewWidget" />
+        </activity>
+        <activity android:name=".activity.TabLayoutActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.TabLayoutActivity" />
+        </activity>
+        <activity android:name=".activity.NavigationViewActivity" />
+        <activity android:name=".activity.CoordinatorLayoutActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.CoordinatorLayoutActivity" />
+        </activity>
+        <activity android:name=".activity.AppBarLayoutActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.AppBarLayoutActivity" />
+        </activity>
+        <activity android:name=".activity.CollapsingToolbarLayoutActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.CollapsingToolbarLayoutActivity" />
+        </activity>
+        <activity android:name=".activity.TabLayoutViewPagerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.TabLayoutViewPagerActivity" />
+        </activity>
+
+        <activity android:name=".activity.RxJavaTestActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.RxJavaTestActivity" />
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_android6_new_widget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.david.mytest.activity.Android6NewWidget">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/widgeet_toolbar_layout" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp">
+            <!--这里可以直接使用EditText-->
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+        <!--选项卡-->
+        <Button
+            android:id="@+id/bt_tl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TabLayout"
+            />
+        <!--DrawerLayout的SlideMenu-->
+        <Button
+            android:id="@+id/bt_nv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NavigationView"
+            />
+        <!--超级FrameLayout-->
+        <Button
+            android:id="@+id/bt_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CoordinatorLayout"
+            />
+        <!--MD风格的滑动Layout-->
+        <Button
+            android:id="@+id/bt_abl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AppBarLayout"
+            />
+        <!--可折叠,MD风格的ToolbarLayout-->
+        <Button
+            android:id="@+id/bt_ctl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CollapsingToolbarLayout"
+            />
+
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_favorite"
+        app:backgroundTint="@color/colorPrimary"
+        app:elevation="4dp"
+        app:fabSize="normal"
+        app:pressedTranslationZ="8dp"
+        app:rippleColor="@color/colorPrimaryDark"
+        app:useCompatPadding="false" />
+
+
+</android.support.design.widget.CoordinatorLayout>
