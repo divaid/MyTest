@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
+import static com.david.mytest.application.BaseApplication.mWatcher;
+
 /**
  * Created by david on 2016/6/21.
  * 创建父类的Activity
@@ -51,6 +53,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mWatcher.watch(this);
+
         //这句话很关键,注意调用父类的方法
 //        super.setContentView(R.layout.activity_base);
         //隐藏导航栏
