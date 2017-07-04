@@ -259,12 +259,11 @@ public class RecyclerBanner extends FrameLayout {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            RatioImageView img = new RatioImageView(parent.getContext());
-            RecyclerView.LayoutParams l = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            ImageView img = new ImageView(parent.getContext());
+            RecyclerView.LayoutParams l = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
             img.setLayoutParams(l);
             img.setId(R.id.icon);
-            img.setRatio(0.7f);
             img.setOnClickListener(new OnClickListener() {// TODO: 2017/7/2 使用全局onclick监听器或者通过itemtouchhelper实现事件
                 @Override
                 public void onClick(View v) {
@@ -280,7 +279,7 @@ public class RecyclerBanner extends FrameLayout {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             ImageView img = (ImageView) holder.itemView.findViewById(R.id.icon);
-            Glide.with(img.getContext()).load(mData.get(position % mData.size()).getUrl()).centerCrop().placeholder(R.mipmap.ic_launcher).into(img);
+            Glide.with(getContext()).load(mData.get(position % mData.size()).getUrl()).placeholder(R.mipmap.ic_launcher).error(R.drawable.arrow_left).into(img);
         }
 
         @Override

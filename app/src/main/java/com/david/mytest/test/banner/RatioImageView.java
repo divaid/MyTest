@@ -69,6 +69,6 @@ public class RatioImageView extends ImageView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        setImageDrawable(null);//加速内存回收
+        setImageDrawable(null);//加速内存回收,会对轮播图产生影响，在列表项里边不要使用
     }
 }
