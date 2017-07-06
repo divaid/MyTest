@@ -157,4 +157,13 @@ public class MainActivity extends BaseActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        contentFrame.removeAllViews();
+        contentFrame =null;
+        leftDrawerFragment.removeAllViews();
+        leftDrawerFragment = null;
+    }
 }
