@@ -50,6 +50,9 @@ public class RecyclerBanner extends FrameLayout {
         @Override
         public void run() {
             currentIndex = currentIndex >= mData.size() - 1 ? 0 : ++currentIndex;
+            if (currentIndex >= mData.size()) {
+                currentIndex = currentIndex % mData.size();
+            }
             mRecyclerView.smoothScrollToPosition(currentIndex);
             changePoint();
             postDelayed(this, 3000);
@@ -136,7 +139,7 @@ public class RecyclerBanner extends FrameLayout {
         }
     }
 
-    public int setDatas(List<BannerEntity> datas) {
+    public int setDatas(List<? extends BannerEntity> datas) {
         setPlaying(false);
         this.mData.clear();
         mDotContainer.removeAllViews();
@@ -216,7 +219,7 @@ public class RecyclerBanner extends FrameLayout {
     /**
      * height width ratio
      */
-    private float ratio = 0.7f;
+    private float ratio = 0.5f;
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -255,7 +258,7 @@ public class RecyclerBanner extends FrameLayout {
     }
 
     // 内置适配器
-    private class RecyclerAdapter extends RecyclerView.Adapter {
+    private class RecyclerAdapter extends RecyclerView.Adapter implements OnClickListener {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -264,14 +267,7 @@ public class RecyclerBanner extends FrameLayout {
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
             img.setLayoutParams(l);
             img.setId(R.id.icon);
-            img.setOnClickListener(new OnClickListener() {// TODO: 2017/7/2 使用全局onclick监听器或者通过itemtouchhelper实现事件
-                @Override
-                public void onClick(View v) {
-                    if (mPageClickListener != null) {
-                        mPageClickListener.onClick(mData.get(currentIndex % mData.size()));
-                    }
-                }
-            });
+            img.setOnClickListener(this);
             return new RecyclerView.ViewHolder(img) {
             };
         }
@@ -285,6 +281,13 @@ public class RecyclerBanner extends FrameLayout {
         @Override
         public int getItemCount() {
             return mData == null ? 0 : mData.size();
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mPageClickListener != null) {
+                mPageClickListener.onClick(mData.get(currentIndex));// TODO: 2017/7/6 返回位置或者广告链接
+            }
         }
     }
 

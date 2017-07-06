@@ -17,6 +17,7 @@ import java.util.List;
 /**
  * Created by david on 2016/7/21.
  */
+@Deprecated
 public class TopImgsPagerAdapter extends PagerAdapter {
 
     private List<NewsMsgBean.TopStoriesBean> mData;

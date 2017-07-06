@@ -1,9 +1,7 @@
 package com.david.mytest.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,21 +11,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.david.mytest.R;
+import com.david.mytest.activity.DetailActivity;
 import com.david.mytest.data.NewsAdapter;
-import com.david.mytest.data.TopImgsPagerAdapter;
 import com.david.mytest.requestBean.NewsMsgBean;
+import com.david.mytest.test.banner.RecyclerBanner;
 import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshBase;
 import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshRecyclerView;
 import com.david.mytest.utils.OkHttpManager;
-import com.david.mytest.utils.UiUtils;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.relex.circleindicator.CircleIndicator;
 import okhttp3.Request;
+
+import static com.david.mytest.activity.DetailActivity.NEWS_ID;
 
 /**
  * Created by david on 2016/6/22.
@@ -43,28 +42,10 @@ public class MainFragment extends BaseFragment {
     @BindView(R.id.recycle_view)
     PullToRefreshRecyclerView mRefreshView;
     private RecyclerView recyclerView;
-
-    private ViewPager topImgViewPager;
-    /**
-     * ViewPager指示器
-     */
-    private CircleIndicator indicator;
+    private RecyclerBanner mHeader;
 
     private NewsMsgBean mNewsData;
     private NewsAdapter adapter;
-    //    private boolean isRefreshing = false;   //是否正在刷新
-    private static final int VIEWPAGER_MSG = 0x110;
-    private int viewPagerPosition;
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            viewPagerPosition++;
-            viewPagerPosition %= mNewsData.getTop_stories().size();
-            topImgViewPager.setCurrentItem(viewPagerPosition);
-            mHandler.sendEmptyMessageDelayed(VIEWPAGER_MSG, 3000);
-        }
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -142,36 +123,43 @@ public class MainFragment extends BaseFragment {
 
                 adapter = new NewsAdapter(getActivity(), mNewsData.getStories());
                 recyclerView.setAdapter(adapter);
-                setHeader(recyclerView);
 
-                TopImgsPagerAdapter pagerAdapter = new TopImgsPagerAdapter(UiUtils.getContext(), top_stories);
-                topImgViewPager.setAdapter(pagerAdapter);
-                //将指示器与ViewPager关联
-                indicator.setViewPager(topImgViewPager);
-                //ViewPager的轮播
-                mHandler.sendEmptyMessage(0);
+                setHeader(recyclerView, top_stories);
             }
 
         });
     }
 
-    private void setHeader(RecyclerView recycleView) {
-        View header = LayoutInflater.from(getContext()).inflate(R.layout.widget_news_header, recycleView, false);
-        topImgViewPager = (ViewPager) header.findViewById(R.id.top_imgs);
-        indicator = (CircleIndicator) header.findViewById(R.id.indicator);
-        adapter.addHeaderView(header);
-    }
+    private void setHeader(RecyclerView recycleView, List<NewsMsgBean.TopStoriesBean> top_stories) {
+        if (top_stories == null || top_stories.size() == 0) {
+            return;
+        }
+        if (mHeader == null) {
+            mHeader = (RecyclerBanner) LayoutInflater.from(getContext()).inflate(R.layout.widget_news_header, recycleView, false);
+            mHeader.setOnPagerClickListener(new RecyclerBanner.OnPagerClickListener() {
+                @Override
+                public void onClick(RecyclerBanner.BannerEntity entity) {
+                    Intent intent = new Intent(getActivity(), DetailActivity.class);
+                    intent.putExtra(NEWS_ID, ((NewsMsgBean.TopStoriesBean) entity).getId());
+                    startActivity(intent);
+                }
+            });
+        }
 
+        mHeader.setDatas(top_stories);
+
+        adapter.addHeaderView(mHeader);
+    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         //移除消息
-        mHandler.removeMessages(VIEWPAGER_MSG);
+        if (mHeader != null) {
+            mHeader.onDestroy();
+        }
         recyclerView.removeAllViews();
         recyclerView = null;
-        topImgViewPager.removeAllViews();
-        topImgViewPager = null;
         mRefreshView.removeAllViews();
         mRefreshView = null;
     }

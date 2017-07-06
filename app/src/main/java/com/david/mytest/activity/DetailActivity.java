@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import com.david.mytest.R;
 import com.david.mytest.activity.base.BaseActivity;
-import com.david.mytest.data.NewsAdapter;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
@@ -21,6 +20,7 @@ import okhttp3.Request;
  */
 
 public class DetailActivity extends BaseActivity {
+    public static final String NEWS_ID = "NEWS_ID";
 
     private static final String TAG ="DetailActivity" ;
     @BindView(R.id.news_webview)
@@ -38,7 +38,7 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        int newsId = getIntent().getIntExtra(NewsAdapter.NEWS_ID, 0);
+        int newsId = getIntent().getIntExtra(NEWS_ID, 0);
 
         requestData(String.valueOf(newsId));
     }
