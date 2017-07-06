@@ -315,7 +315,7 @@ public class WheelView extends ScrollView {
 
     @Override
     public void fling(int velocityY) {
-        super.fling(velocityY);//通过velocityY/n 设置不滑动太快
+        super.fling(velocityY/3);//通过velocityY/n 设置不滑动太快
     }
 
     @Override

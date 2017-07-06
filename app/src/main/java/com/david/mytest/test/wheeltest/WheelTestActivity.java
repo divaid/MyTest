@@ -2,13 +2,12 @@ package com.david.mytest.test.wheeltest;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.Snackbar;
 
 import com.david.mytest.R;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-
-import static com.zhy.http.okhttp.log.LoggerInterceptor.TAG;
 
 /**
  * Created by weixi on 2017/6/30.
@@ -28,8 +27,21 @@ public class WheelTestActivity extends Activity {
         wv.setOnWheelListener(new WheelView.OnWheelListener() {
             @Override
             public void onSelected(int selectedIndex, String item) {
-                Log.d(TAG, "[Dialog]selectedIndex: " + selectedIndex + ", item: " + item);
+
             }
         });
+
+        final RecyclerWheelView view = (RecyclerWheelView) findViewById(R.id.recycler_wheel);
+        ArrayList<String> data = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            data.add("item "+ i);
+        }
+        view.setmOnSelectListener(new RecyclerWheelView.OnSelectListener() {
+            @Override
+            public void onSelect(int position) {
+                Snackbar.make(view, "select "+ position, Snackbar.LENGTH_LONG).show();
+            }
+        });
+        view.setData(data);
     }
 }
