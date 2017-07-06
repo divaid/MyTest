@@ -1,4 +1,4 @@
-package com.david.mytest.activity;
+package com.david.mytest.activity.mine;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.david.mytest.R;
+import com.david.mytest.activity.mine.newwidget.AppBarLayoutActivity;
+import com.david.mytest.activity.mine.newwidget.CollapsingToolbarLayoutActivity;
+import com.david.mytest.activity.mine.newwidget.CoordinatorLayoutActivity;
+import com.david.mytest.activity.mine.newwidget.NavigationViewActivity;
+import com.david.mytest.activity.mine.newwidget.TabLayoutActivity;
 import com.david.mytest.activity.base.BaseActivity;
 
 import butterknife.BindView;

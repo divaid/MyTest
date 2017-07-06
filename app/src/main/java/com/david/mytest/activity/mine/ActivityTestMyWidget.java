@@ -1,4 +1,4 @@
-package com.david.mytest.activity;
+package com.david.mytest.activity.mine;
 
 import android.app.Activity;
 import android.content.Intent;

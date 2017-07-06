@@ -1,4 +1,4 @@
-package com.david.mytest.activity;
+package com.david.mytest.activity.detail;
 
 import android.webkit.WebSettings;
 import android.webkit.WebView;

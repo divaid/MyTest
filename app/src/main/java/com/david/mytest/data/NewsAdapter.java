@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.david.mytest.R;
-import com.david.mytest.activity.DetailActivity;
+import com.david.mytest.activity.detail.DetailActivity;
 import com.david.mytest.requestBean.NewsMsgBean;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.david.mytest.activity.DetailActivity.NEWS_ID;
+import static com.david.mytest.activity.detail.DetailActivity.NEWS_ID;
 
 /**
  * Created by david on 2016/7/8.

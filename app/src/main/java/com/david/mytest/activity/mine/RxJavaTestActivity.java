@@ -1,4 +1,4 @@
-package com.david.mytest.activity;
+package com.david.mytest.activity.mine;
 
 import android.os.CountDownTimer;
 import android.support.v7.widget.Toolbar;

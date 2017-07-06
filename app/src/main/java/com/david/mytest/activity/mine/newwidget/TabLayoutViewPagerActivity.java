@@ -1,4 +1,4 @@
-package com.david.mytest.activity;
+package com.david.mytest.activity.mine.newwidget;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;

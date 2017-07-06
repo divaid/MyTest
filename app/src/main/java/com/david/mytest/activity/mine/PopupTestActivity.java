@@ -1,4 +1,4 @@
-package com.david.mytest.activity;
+package com.david.mytest.activity.mine;
 
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.Toolbar;
@@ -25,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by david on 2016/8/18.
  */
-public class PopupWindowTest extends BaseActivity {
+public class PopupTestActivity extends BaseActivity {
     @BindView(R.id.civ_title_head)
     CircleImageView civTitleHead;
     @BindView(R.id.ib_arrow_left)
@@ -51,7 +51,7 @@ public class PopupWindowTest extends BaseActivity {
         ButterKnife.bind(this);
 
         ibArrowLeft.setVisibility(View.VISIBLE);
-        toolbar.setTitle("PopupWindowTest");
+        toolbar.setTitle("PopupTestActivity");
         setSupportActionBar(toolbar);
     }
 
@@ -94,7 +94,7 @@ public class PopupWindowTest extends BaseActivity {
         contentView.findViewById(R.id.tv_confirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PopupWindowTest.this, "点击了确定", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PopupTestActivity.this, "点击了确定", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
@@ -151,7 +151,7 @@ public class PopupWindowTest extends BaseActivity {
         contentView.findViewById(R.id.tv_confirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PopupWindowTest.this, "点击了确定", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PopupTestActivity.this, "点击了确定", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
@@ -188,7 +188,7 @@ public class PopupWindowTest extends BaseActivity {
         tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PopupWindowTest.this, "标为已读", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PopupTestActivity.this, "标为已读", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
@@ -196,7 +196,7 @@ public class PopupWindowTest extends BaseActivity {
         tvConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PopupWindowTest.this, "置顶公众号", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PopupTestActivity.this, "置顶公众号", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });
@@ -204,7 +204,7 @@ public class PopupWindowTest extends BaseActivity {
         tvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PopupWindowTest.this, "取消关注", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PopupTestActivity.this, "取消关注", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
             }
         });

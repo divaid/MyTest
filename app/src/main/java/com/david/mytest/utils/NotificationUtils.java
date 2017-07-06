@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.david.mytest.R;
-import com.david.mytest.activity.DownLoadActivity;
+import com.david.mytest.activity.mine.DownLoadActivity;
 import com.david.mytest.download.DownloadService;
 import com.david.mytest.download.FileInfo;
 

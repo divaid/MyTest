@@ -1,4 +1,4 @@
-package com.david.mytest.activity;
+package com.david.mytest.activity.mine.newwidget;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;

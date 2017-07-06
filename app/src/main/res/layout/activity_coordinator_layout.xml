@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.david.mytest.activity.CoordinatorLayoutActivity">
+    tools:context="com.david.mytest.activity.mine.newwidget.CoordinatorLayoutActivity">
 
     <include layout="@layout/widgeet_toolbar_layout"/>
 

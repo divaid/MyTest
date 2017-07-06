@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.david.mytest.R;
-import com.david.mytest.activity.DetailActivity;
+import com.david.mytest.activity.detail.DetailActivity;
 import com.david.mytest.data.NewsAdapter;
 import com.david.mytest.requestBean.NewsMsgBean;
 import com.david.mytest.test.banner.RecyclerBanner;
@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Request;
 
-import static com.david.mytest.activity.DetailActivity.NEWS_ID;
+import static com.david.mytest.activity.detail.DetailActivity.NEWS_ID;
 
 /**
  * Created by david on 2016/6/22.

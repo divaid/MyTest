@@ -1,4 +1,4 @@
-package com.david.mytest.activity;
+package com.david.mytest.activity.mine.newwidget;
 
 import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;

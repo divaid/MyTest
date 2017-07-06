@@ -1,57 +1,39 @@
-package com.david.mytest.activity;
+package com.david.mytest.activity.mine.newwidget;
 
-import android.graphics.Color;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
 import com.david.mytest.R;
 import com.david.mytest.activity.base.BaseActivity;
-import com.jaeger.library.StatusBarUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class CollapsingToolbarLayoutActivity extends BaseActivity {
+/**
+ * AppBarLayout测试
+ *
+ * @author By david
+ *         Create at 2016/10/18 10:07
+ */
+public class AppBarLayoutActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.activity_collapsing_toolbar_layout)
-    CoordinatorLayout activityCollapsingToolbarLayout;
     @BindView(R.id.tv_content)
     TextView tvContent;
-    @BindView(R.id.collapsing_toolbar_layout)
-    CollapsingToolbarLayout collapsingToolbarLayout;
-    @BindView(R.id.app_bar_layout)
-    AppBarLayout appBarLayout;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_collapsing_toolbar_layout;
+        return R.layout.activity_app_bar_layout;
     }
 
     @Override
     protected void initView() {
         ButterKnife.bind(this);
 
-        //设置状态栏为全透明。
-        StatusBarUtil.setTransparent(this);
-
-//        toolbar.setTitle("CollapsingToolbarLayout");
+        toolbar.setTitle("AppBarLayout");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        collapsingToolbarLayout.setTitle("CollapsingToolbarLayout");
-        collapsingToolbarLayout.setExpandedTitleColor(Color.BLACK);     //设置展开时Title的颜色
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);    //设置收缩时Title的颜色
 
         tvContent.setText("新华社印度果阿10月17日电 题：携手规划金砖国家发展新蓝图——记习近平主席出席在印度果阿举行的金砖国家领导人第八次会晤\n" +
                 "椰林摇曳，沙滩延绵。印度西海岸，阿拉伯海之畔。10月15日至16日，国家主席习近平出席在印度果阿举行的金砖国家领导人第八次会晤。从南非德班到巴西福塔莱萨，从俄罗斯乌法到印度果阿，这是习近平主席第4次出席金砖国家领导人会晤。\n" +
@@ -85,8 +67,6 @@ public class CollapsingToolbarLayoutActivity extends BaseActivity {
                 "无论是同周边国家共商合作大计，还是在多边场合与各国共谋发展之道，习近平主席在峰会期间提出的倡议理念都同二十国集团领导人杭州峰会共识一脉相承、融会贯通，体现出中方推进全球经济治理、构建全球伙伴关系的信心和决心。\n" +
                 "3年前，习近平主席先后提出“一带一路”倡议和亲诚惠容的周边外交理念。春华秋实，三年有成。高举和平发展的旗帜，古老的东方大国，正在一步一个脚印走向世界舞台的中央。\n" +
                 "明年9月，金砖国家领导人第九次会晤将在东海之滨的福建厦门举行。中国，将同各国一道，携手努力，谱写金砖国家合作新篇章，开启建设美好世界的新征程。");
-
-
     }
 
     @Override
@@ -94,10 +74,4 @@ public class CollapsingToolbarLayoutActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.fab)
-    public void onClick(View view) {
-        Snackbar snackbar = Snackbar.make(activityCollapsingToolbarLayout,"已收藏...",Snackbar.LENGTH_LONG);
-        snackbar.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        snackbar.show();
-    }
 }

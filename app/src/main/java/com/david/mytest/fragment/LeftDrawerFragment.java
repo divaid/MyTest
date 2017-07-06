@@ -13,15 +13,15 @@ import android.widget.TextView;
 
 import com.david.mytest.activity.main.MainActivity;
 import com.david.mytest.R;
-import com.david.mytest.activity.ActivityTestMyWidget;
-import com.david.mytest.activity.Android6NewWidget;
-import com.david.mytest.activity.DownLoadActivity;
-import com.david.mytest.activity.PopupWindowTest;
-import com.david.mytest.activity.RxJavaTestActivity;
-import com.david.mytest.activity.SettingsActivity;
-import com.david.mytest.activity.AllCheckActivity;
-import com.david.mytest.activity.SingleCheckActivity;
-import com.david.mytest.activity.TestFragmentActivity;
+import com.david.mytest.activity.mine.ActivityTestMyWidget;
+import com.david.mytest.activity.mine.Android6NewWidget;
+import com.david.mytest.activity.mine.DownLoadActivity;
+import com.david.mytest.activity.mine.PopupTestActivity;
+import com.david.mytest.activity.mine.RxJavaTestActivity;
+import com.david.mytest.activity.mine.SettingsActivity;
+import com.david.mytest.activity.mine.AllCheckActivity;
+import com.david.mytest.activity.mine.SingleCheckActivity;
+import com.david.mytest.activity.mine.newwidget.TestFragmentActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,7 +84,7 @@ public class LeftDrawerFragment extends BaseFragment {
             case R.id.about_us:
                 break;
             case R.id.tv_popupwindow:   //PopupWindow测试页面
-                openActivity(getContext(), PopupWindowTest.class);
+                openActivity(getContext(), PopupTestActivity.class);
                 mainActivity.drawerLayout.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.tv_download:  //断点续传下载
