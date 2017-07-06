@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshScrollView
+    android:id="@+id/pull_scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:ptrAnimationStyle="simple">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="本本、能、本本测试\n\n\n\n\n\n\n文本\\n\n\n\n\\n\n\n\n\测试文本\n\n\n\n\n\n\n\n\n\n\n测\n\n\n\文本"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="本本、能、本本测试\n\n\n\n\n\n\n文本\\n\n\n\n\\n\n\n\n\测试文本\n\n\n\n\n\n\n\n\n\n\n测\n\n\n\文本"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+</com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshScrollView>
+</LinearLayout>

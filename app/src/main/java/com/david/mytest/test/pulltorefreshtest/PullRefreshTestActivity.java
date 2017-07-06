@@ -1,44 +1,53 @@
 package com.david.mytest.test.pulltorefreshtest;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.david.mytest.R;
-import com.david.mytest.test.pulltorefreshtest.refresh.PullToRefreshBase;
-import com.david.mytest.test.pulltorefreshtest.refresh.PullToRefreshWebView;
 
 /**
- * Created by weixi on 2017/6/29.
+ * Created by David on 2017/6/29.
  */
 
-public class PullRefreshTestActivity extends Activity {
-    private View mTest;
-    private PullToRefreshWebView mWebView;
+public class PullRefreshTestActivity extends Activity implements View.OnClickListener{
+//    private View mTest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_pull_refresh);
-        mWebView = (PullToRefreshWebView) findViewById(R.id.pull);
-        mWebView.setOnPullRefreshListener(new PullToRefreshBase.OnPullRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mWebView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mWebView.onRefreshComplete();
-                    }
-                }, 1000);
-            }
-        });
-        mTest = findViewById(R.id.test);// TODO: 2017/7/2 如果网页是自动加载下一页 ？ 下拉之后往回拉会拉出refreshfooter
-        mWebView.getRefreshableView().loadUrl("http://www.imooc.com/search/course?words=hybrid");
+        findViewById(R.id.btn_pull_refresh_grid).setOnClickListener(this);
+        findViewById(R.id.btn_pull_refresh_list).setOnClickListener(this);
+        findViewById(R.id.btn_pull_refresh_scroll).setOnClickListener(this);
+        findViewById(R.id.btn_pull_refresh_web).setOnClickListener(this);
+        findViewById(R.id.btn_pull_refresh_recycler).setOnClickListener(this);
+    }
 
-//        findViewById(R.id.view).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(PullRefreshTestActivity.this, "click", Toast.LENGTH_LONG).show();
-//            }
-//        });
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_pull_refresh_grid:
+                nav(PullGridActivity.class);
+                break;
+            case R.id.btn_pull_refresh_list:
+                nav(PullListActivity.class);
+                break;
+            case R.id.btn_pull_refresh_scroll:
+                nav(PullScrollActivity.class);
+                break;
+            case R.id.btn_pull_refresh_web:
+                nav(PullWebActivity.class);
+                break;
+            case R.id.btn_pull_refresh_recycler:
+                nav(PullRecyclerActivity.class);
+
+                break;
+        }
+    }
+
+    private void nav(Class className){
+        startActivity(new Intent(this, className));
     }
 }

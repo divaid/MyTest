@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.david.mytest.R;
-import com.david.mytest.ui.pulltorefresh.pulltorefreshorigin.progress.Utils;
+import com.david.mytest.ui.pulltorefresh.progress.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

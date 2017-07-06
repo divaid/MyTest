@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+            android:id="@+id/fl_inner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/header_footer_top_bottom_padding"
+            android:paddingLeft="@dimen/header_footer_left_right_padding"
+            android:paddingRight="@dimen/header_footer_left_right_padding">
+
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:visibility="gone"
+            >
+
+            <ImageView
+                    android:id="@+id/pull_to_refresh_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+
+            <ProgressBar
+                    android:id="@+id/pull_to_refresh_progress"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:visibility="gone"/>
+        </FrameLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal">
+
+            <LinearLayout
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/header_footer_top_bottom_padding"
+                    android:visibility="visible">
+
+                <!--显示在文字左边图片-->
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:paddingRight="8dp"
+                    />
+                        <!--android:src="@drawable/detail_sep_line"-->
+
+                <!--android:textAppearance="?android:attr/textAppearance"-->
+                <!--显示在刷新文本左边的环形进度条-->
+                <ProgressBar
+                        android:id="@+id/pull_to_refresh_progress2"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:indeterminate="true"
+                        android:visibility="gone"/>
+
+                <TextView
+                        android:id="@+id/pull_to_refresh_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:drawablePadding="8dp"
+                        android:maxLines="1"
+                        android:textColor="#919191"
+                        android:textSize="14sp"/>
+
+                <TextView
+                        android:id="@+id/pull_to_refresh_sub_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:visibility="gone"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:paddingLeft="8dp"
+                    />
+                <!--显示在文字右边的图片，之前左右都是显示一条线-->
+                        <!--android:src="@drawable/detail_sep_line"-->
+
+            </LinearLayout>
+
+            <FrameLayout
+                    android:id="@+id/indicator_panel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/header_footer_top_bottom_padding"
+                    android:visibility="gone">
+
+                <!--DonutProgress内部显示的图片-->
+                <ImageView
+                        android:id="@+id/icon"
+                        android:layout_width="14dp"
+                        android:layout_height="13dp"
+                        android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/app_text"
+                    android:layout_width="14dp"
+                    android:layout_height="13dp"
+                    android:textColor="#008dda"
+                    android:text="星"
+                    android:textSize="10sp"
+                    android:layout_marginBottom="0.5dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                        <!--android:src="@drawable/mjrefresh_logo_he"-->
+
+                <com.david.mytest.ui.pulltorefresh.progress.DonutProgress
+                        android:id="@+id/indicator_progress"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:visibility="visible"
+                        app:donut_inner_bottom_text_color="@color/transparent"/>
+
+                <com.david.mytest.ui.pulltorefresh.anim.AnimatedView
+                        android:id="@+id/indicator_moto"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:visibility="visible"
+                />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+    </FrameLayout>
+
+</merge>

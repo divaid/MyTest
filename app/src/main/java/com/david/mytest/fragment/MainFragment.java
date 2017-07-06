@@ -1,12 +1,9 @@
 package com.david.mytest.fragment;
 
-import android.graphics.Color;
-import android.graphics.PathMeasure;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +16,8 @@ import com.david.mytest.R;
 import com.david.mytest.data.NewsAdapter;
 import com.david.mytest.data.TopImgsPagerAdapter;
 import com.david.mytest.requestBean.NewsMsgBean;
+import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshBase;
+import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshRecyclerView;
 import com.david.mytest.utils.OkHttpManager;
 import com.david.mytest.utils.UiUtils;
 import com.orhanobut.logger.Logger;
@@ -32,16 +31,18 @@ import okhttp3.Request;
 
 /**
  * Created by david on 2016/6/22.
- *
  */
 public class MainFragment extends BaseFragment {
 
 
     private static final String TAG = "MainFragment";
+//    @BindView(R.id.swipe_container)
+//    SwipeRefreshLayout swipeContainer;
+
+
     @BindView(R.id.recycle_view)
-    RecyclerView recycleView;
-    @BindView(R.id.swipe_container)
-    SwipeRefreshLayout swipeContainer;
+    PullToRefreshRecyclerView mRefreshView;
+    private RecyclerView recyclerView;
 
     private ViewPager topImgViewPager;
     /**
@@ -51,17 +52,17 @@ public class MainFragment extends BaseFragment {
 
     private NewsMsgBean mNewsData;
     private NewsAdapter adapter;
-//    private boolean isRefreshing = false;   //是否正在刷新
+    //    private boolean isRefreshing = false;   //是否正在刷新
     private static final int VIEWPAGER_MSG = 0x110;
     private int viewPagerPosition;
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             viewPagerPosition++;
             viewPagerPosition %= mNewsData.getTop_stories().size();
             topImgViewPager.setCurrentItem(viewPagerPosition);
-            mHandler.sendEmptyMessageDelayed(VIEWPAGER_MSG,3000);
+            mHandler.sendEmptyMessageDelayed(VIEWPAGER_MSG, 3000);
         }
     };
 
@@ -75,33 +76,43 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initView() {
-        recycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //这是RecycleView默认的item动画
-        recycleView.setItemAnimator(new DefaultItemAnimator());
-//        NewsAdapter adapter = new NewsAdapter(UiUtils.getContext(), mNewsData.getStories());
-//        recycleView.setAdapter(adapter);
-        //设置进度条的颜色主题，最多能设置四种 加载颜色是循环播放的，只要没有完成刷新就会一直循环，holo_blue_bright>holo_green_light>holo_orange_light>holo_red_light
-        swipeContainer.setColorSchemeColors(Color.BLUE,
-                Color.GREEN,
-                Color.YELLOW,
-                Color.RED);
-        // 设置手指在屏幕下拉多少距离会触发下拉刷新
-        swipeContainer.setDistanceToTriggerSync(300);
-        // 设定下拉圆圈的背景
-        swipeContainer.setProgressBackgroundColorSchemeColor(Color.WHITE);
-        // 设置圆圈的大小
-        swipeContainer.setSize(SwipeRefreshLayout.DEFAULT);
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mRefreshView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<RecyclerView>() {
             @Override
-            public void onRefresh() {
-                if (!swipeContainer.isRefreshing()) {
-//                    isRefreshing = true;
-                    swipeContainer.setRefreshing(true); //显示刷新进度条
-                    PathMeasure pathMeasure;
-                    requestData();
-                }
+            public void onRefresh(PullToRefreshBase<RecyclerView> refreshView) {
+                requestData();
             }
         });
+
+        recyclerView = mRefreshView.getRefreshableView();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //这是RecycleView默认的item动画
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        NewsAdapter adapter = new NewsAdapter(UiUtils.getContext(), mNewsData.getStories());
+//        recycleView.setAdapter(adapter);
+
+
+        //设置进度条的颜色主题，最多能设置四种 加载颜色是循环播放的，只要没有完成刷新就会一直循环，holo_blue_bright>holo_green_light>holo_orange_light>holo_red_light
+//        swipeContainer.setColorSchemeColors(Color.BLUE,
+//                Color.GREEN,
+//                Color.YELLOW,
+//                Color.RED);
+//        // 设置手指在屏幕下拉多少距离会触发下拉刷新
+//        swipeContainer.setDistanceToTriggerSync(300);
+//        // 设定下拉圆圈的背景
+//        swipeContainer.setProgressBackgroundColorSchemeColor(Color.WHITE);
+//        // 设置圆圈的大小
+//        swipeContainer.setSize(SwipeRefreshLayout.DEFAULT);
+//        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                if (!swipeContainer.isRefreshing()) {
+////                    isRefreshing = true;
+//                    swipeContainer.setRefreshing(true); //显示刷新进度条
+//                    PathMeasure pathMeasure;
+//                    requestData();
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -114,24 +125,26 @@ public class MainFragment extends BaseFragment {
 
             @Override
             public void onError(Request request, Exception e) {
-                swipeContainer.setRefreshing(false);
+//                swipeContainer.setRefreshing(false);
+                mRefreshView.onRefreshComplete();
 //                isRefreshing = false;
                 Log.d("TAG", e.getMessage());
             }
 
             @Override
             public void onSuccess(NewsMsgBean response) {
-                swipeContainer.setRefreshing(false);    //隐藏刷新进度条
+//                swipeContainer.setRefreshing(false);    //隐藏刷新进度条
+                mRefreshView.onRefreshComplete();
 //                isRefreshing = false;
                 Logger.d(response);
                 mNewsData = response;
                 List<NewsMsgBean.TopStoriesBean> top_stories = mNewsData.getTop_stories();
 
                 adapter = new NewsAdapter(getActivity(), mNewsData.getStories());
-                recycleView.setAdapter(adapter);
-                setHeader(recycleView);
+                recyclerView.setAdapter(adapter);
+                setHeader(recyclerView);
 
-                TopImgsPagerAdapter pagerAdapter = new TopImgsPagerAdapter(UiUtils.getContext(),top_stories);
+                TopImgsPagerAdapter pagerAdapter = new TopImgsPagerAdapter(UiUtils.getContext(), top_stories);
                 topImgViewPager.setAdapter(pagerAdapter);
                 //将指示器与ViewPager关联
                 indicator.setViewPager(topImgViewPager);
@@ -155,5 +168,11 @@ public class MainFragment extends BaseFragment {
         super.onDestroyView();
         //移除消息
         mHandler.removeMessages(VIEWPAGER_MSG);
+        recyclerView.removeAllViews();
+        recyclerView = null;
+        topImgViewPager.removeAllViews();
+        topImgViewPager = null;
+        mRefreshView.removeAllViews();
+        mRefreshView = null;
     }
 }

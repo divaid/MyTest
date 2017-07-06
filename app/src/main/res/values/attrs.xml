@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<declare-styleable name="LabelTextView">
+		<attr name="label" format="string"/>
+		<attr name="hideLabel" format="boolean"/>
+		<attr name="topBorder" format="boolean"/>
+		<attr name="bottomBorder" format="boolean"/>
+	</declare-styleable>
+
+	<declare-styleable name="SemicircleTextView">
+		<attr name="circle_color" format="color"/>
+	</declare-styleable>
+
+	<declare-styleable name="PagerSlidingTabStrip">
+		<attr name="pstsIndicatorColor" format="color"/>
+		<attr name="pstsUnderlineColor" format="color"/>
+		<attr name="pstsDividerColor" format="color"/>
+		<attr name="pstsTextDefaultColor" format="color"/>
+		<attr name="pstsTextSelectColor" format="color"/>
+		<attr name="pstsPointColor" format="color"/>
+
+
+		<attr name="pstsIndicatorHeight" format="dimension"/>
+		<attr name="pstsUnderlineHeight" format="dimension"/>
+		<attr name="pstsDividerPadding" format="dimension"/>
+		<attr name="pstsTabPaddingLeftRight" format="dimension"/>
+		<attr name="pstsScrollOffset" format="dimension"/>
+		<attr name="pstsTextSize" format="dimension"/>
+		<attr name="pstsPointSize" format="dimension"/>
+
+		<attr name="pstsTabBackground" format="reference"/>
+		<attr name="pstsShouldExpand" format="boolean"/>
+		<attr name="pstsTextAllCaps" format="boolean"/>
+	</declare-styleable>
+
+
+	<!--<declare-styleable name="CustomBanner">-->
+	<!--<attr name="custom_autoScrollInterval" format="integer"/>-->
+	<!--<attr name="custom_autoScroll" format="boolean"/>-->
+	<!--<attr name="custom_ratio"/>-->
+	<!--<attr name="custom_focusColor" format="reference|color"/>-->
+	<!--<attr name="custom_unfocusColor" format="reference|color"/>-->
+	<!--</declare-styleable>-->
+
+	<declare-styleable name="PullToRefresh">
+
+		<!-- A drawable to use as the background of the Refreshable View -->
+		<attr name="ptrRefreshableViewBackground" format="reference|color"/>
+
+		<!-- A drawable to use as the background of the Header and Footer Loading Views -->
+		<attr name="ptrHeaderBackground" format="reference|color"/>
+
+		<!-- Text Color of the Header and Footer Loading Views -->
+		<attr name="ptrHeaderTextColor" format="reference|color"/>
+
+		<!-- Text Color of the Header and Footer Loading Views Sub Header -->
+		<attr name="ptrHeaderSubTextColor" format="reference|color"/>
+
+		<!-- Mode of Pull-to-Refresh that should be used -->
+		<attr name="ptrMode">
+			<flag name="disabled" value="0x0"/>
+			<flag name="pullFromStart" value="0x1"/>
+			<flag name="pullFromEnd" value="0x2"/>
+			<flag name="both" value="0x3"/>
+			<flag name="manualOnly" value="0x4"/>
+
+			<!-- These last two are depreacted -->
+			<flag name="pullDownFromTop" value="0x1"/>
+			<flag name="pullUpFromBottom" value="0x2"/>
+		</attr>
+
+		<!-- Whether the Indicator overlay(s) should be used -->
+		<attr name="ptrShowIndicator" format="reference|boolean"/>
+
+		<!-- Drawable to use as Loading Indicator. Changes both Header and Footer. -->
+		<attr name="ptrDrawable" format="reference"/>
+
+		<!-- Drawable to use as Loading Indicator in the Header View. Overrides value set in ptrDrawable. -->
+		<attr name="ptrDrawableStart" format="reference"/>
+
+		<!-- Drawable to use as Loading Indicator in the Footer View. Overrides value set in ptrDrawable. -->
+		<attr name="ptrDrawableEnd" format="reference"/>
+
+		<!-- Whether Android's built-in Over Scroll should be utilised for Pull-to-Refresh. -->
+		<attr name="ptrOverScroll" format="reference|boolean"/>
+
+		<!-- Base text color, typeface, size, and style for Header and Footer Loading Views -->
+		<attr name="ptrHeaderTextAppearance" format="reference"/>
+
+		<!-- Base text color, typeface, size, and style for Header and Footer Loading Views Sub Header -->
+		<attr name="ptrSubHeaderTextAppearance" format="reference"/>
+
+		<!-- Style of Animation should be used displayed when pulling. -->
+		<attr name="ptrAnimationStyle">
+			<flag name="rotate" value="0x0"/>
+			<flag name="flip" value="0x1"/>
+			<flag name="normal" value="0x2"/>
+			<flag name="detail" value="0x3"/>
+			<flag name="detail_bottom" value="0x4"/>
+			<flag name="home_fresh" value="0x5"/>
+			<flag name="simple" value="0x6"/>
+		</attr>
+
+		<!-- Whether the user can scroll while the View is Refreshing -->
+		<attr name="ptrScrollingWhileRefreshingEnabled" format="reference|boolean"/>
+
+		<!--
+			Whether PullToRefreshListView has it's extras enabled. This allows the user to be
+			able to scroll while refreshing, and behaves better. It acheives this by adding
+			Header and/or Footer Views to the ListView.
+		-->
+		<attr name="ptrListViewExtrasEnabled" format="reference|boolean"/>
+
+		<!--
+			Whether the Drawable should be continually rotated as you pull. This only
+			takes effect when using the 'Rotate' Animation Style.
+		-->
+		<attr name="ptrRotateDrawableWhilePulling" format="reference|boolean"/>
+
+		<!-- BELOW HERE ARE DEPRECEATED. DO NOT USE. -->
+		<attr name="ptrAdapterViewBackground" format="reference|color"/>
+		<attr name="ptrDrawableTop" format="reference"/>
+		<attr name="ptrDrawableBottom" format="reference"/>
+	</declare-styleable>
+
+	<!--圆形头像-->
+	<declare-styleable name="CircleImageView">
+		<attr name="border_width" format="dimension"/>
+		<attr name="border_color" format="color"/>
+	</declare-styleable>
+
+
+	<declare-styleable name="TagCloudView">
+		<attr name="tcvBackground" format="reference"/>
+		<attr name="tcvTextColor" format="color"/>
+		<attr name="tcvBorder" format="dimension"/>
+		<attr name="tcvTextSize" format="dimension"/>
+		<attr name="tcvBorderItem" format="dimension"/>
+		<attr name="tcvItemBorderVertical" format="dimension"/>
+		<attr name="tcvItemBorderHorizontal" format="dimension"/>
+
+		<attr name="tcvSingleLine" format="boolean"/>
+		<attr name="tcvShowEndText" format="boolean"/>
+		<attr name="tcvShowRightImg" format="boolean"/>
+		<attr name="tcvEndText" format="string"/>
+		<attr name="tcvRightResId" format="reference"/>
+		<attr name="tcvCanTagClick" format="boolean"/>
+
+		<attr name="tcvTagResId" format="reference"/>
+	</declare-styleable>
+
+	<declare-styleable name="RangeSeekbar">
+		<attr name="seekbarHeight" format="dimension"/>
+		<attr name="textSize" format="dimension"/>
+		<attr name="spaceBetween" format="dimension"/>
+
+		<attr name="leftCursorBackground" format="reference"/>
+		<attr name="rightCursorBackground" format="reference"/>
+		<attr name="markTextArray" format="reference"/>
+
+		<attr name="textColorNormal" format="color"/>
+		<attr name="textColorSelected" format="color"/>
+		<attr name="seekbarColorNormal" format="color"/>
+		<attr name="seekbarColorSelected" format="color"/>
+		<attr name="autoMoveDuration" format="integer"/>
+
+	</declare-styleable>
+
+	<declare-styleable name="TriangleTagText">
+		<attr name="bgWitdth" format="dimension"/>
+		<attr name="textColor" format="color"/>
+		<attr name="bgColor" format="color"/>
+		<attr name="scalePercent" format="float"/>
+		<attr name="tagText" format="string"/>
+	</declare-styleable>
+
+	<declare-styleable name="CircleProgress">
+		<attr name="circle_progress" format="integer"/>
+		<attr name="circle_max" format="integer"/>
+
+		<attr name="circle_unfinished_color" format="color"/>
+		<attr name="circle_finished_color" format="color"/>
+
+		<attr name="circle_text_size" format="dimension"/>
+		<attr name="circle_text_color" format="color"/>
+
+		<attr name="circle_prefix_text" format="string"/>
+		<attr name="circle_suffix_text" format="string"/>
+	</declare-styleable>
+
+	<declare-styleable name="DonutProgress">
+		<attr name="donut_progress" format="integer"/>
+		<attr name="donut_max" format="integer"/>
+
+		<attr name="donut_unfinished_color" format="color"/>
+		<attr name="donut_finished_color" format="color"/>
+
+		<attr name="donut_finished_stroke_width" format="dimension"/>
+		<attr name="donut_unfinished_stroke_width" format="dimension"/>
+
+		<attr name="donut_text_size" format="dimension"/>
+		<attr name="donut_text_color" format="color"/>
+
+		<attr name="donut_prefix_text" format="string"/>
+		<attr name="donut_suffix_text" format="string"/>
+		<attr name="donut_text" format="string"/>
+
+		<attr name="donut_background_color" format="color"/>
+
+		<attr name="donut_inner_bottom_text" format="string"/>
+		<attr name="donut_inner_bottom_text_size" format="dimension"/>
+		<attr name="donut_inner_bottom_text_color" format="color"/>
+
+		<attr name="donut_circle_starting_degree" format="integer"/>
+	</declare-styleable>
+
+	<declare-styleable name="ArcProgress">
+		<attr name="arc_progress" format="integer"/>
+		<attr name="arc_angle" format="float"/>
+		<attr name="arc_stroke_width" format="dimension"/>
+		<attr name="arc_max" format="integer"/>
+
+		<attr name="arc_unfinished_color" format="color"/>
+		<attr name="arc_finished_color" format="color"/>
+
+		<attr name="arc_text_size" format="dimension"/>
+		<attr name="arc_text_color" format="color"/>
+
+		<attr name="arc_suffix_text" format="string"/>
+		<attr name="arc_suffix_text_size" format="dimension"/>
+		<attr name="arc_suffix_text_padding" format="dimension"/>
+
+		<attr name="arc_bottom_text" format="string"/>
+		<attr name="arc_bottom_text_size" format="dimension"/>
+	</declare-styleable>
+
+	<declare-styleable name="SwitchButton">
+		<attr name="mWidth" format="dimension"></attr>
+		<attr name="mHeight" format="dimension"></attr>
+	</declare-styleable>
+
+	<declare-styleable name="SlidingIndicator">
+		<attr name="indicatorWidth" format="dimension" />
+		<attr name="indicatorHeight" format="dimension" />
+		<attr name="indicatorPadding" format="dimension" />
+		<attr name="hitColor" format="reference" />
+		<attr name="missedColor" format="reference" />
+	</declare-styleable>
+
+	<declare-styleable name="ManiBentoTitleBar">
+		<attr name="backMaskedViewBackground" format="reference" />
+		<attr name="barBackgroundColorFrom" format="reference" />
+		<attr name="barBackgroundColorTo" format="reference" />
+		<attr name="foregroundColorFrom" format="color" />
+		<attr name="foregroundColorTo" format="color" />
+		<attr name="embedBackgroundColor" format="reference" />
+		<attr name="searchBackgroundFrom" format="reference" />
+		<attr name="searchBackgroundTo" format="reference" />
+		<attr name="navigationBackgroundFrom" format="reference" />
+		<attr name="navigationBackgroundTo" format="reference" />
+		<attr name="downArrowBackgroundFrom" format="reference" />
+		<attr name="downArrowBackgroundTo" format="reference" />
+		<attr name="cartBackgroundFrom" format="reference" />
+		<attr name="cartBackgroundTo" format="reference" />
+		<attr name="hippoDivider" format="reference" />
+	</declare-styleable>
+
+	<declare-styleable name="ForegroundShowView">
+		<attr name="stickyTop" format="dimension" />
+	</declare-styleable>
+
+	<declare-styleable name="SecKillCountDownView">
+		<attr name="fontSize" format="dimension" />
+		<attr name="day_foreground" format="color" />
+		<attr name="day_background" format="reference" />
+		<attr name="hour_foreground" format="color" />
+		<attr name="hour_background" format="reference" />
+		<attr name="minute_foreground" format="color" />
+		<attr name="minute_background" format="reference" />
+		<attr name="second_foreground" format="color" />
+		<attr name="second_background" format="reference" />
+		<attr name="separator_in_hour_minute_foreground" format="reference" />
+		<attr name="separator_in_minute_second_foreground" format="reference" />
+	</declare-styleable>
+
+	<declare-styleable name="SquaredAnimatedView">
+		<attr name="add" format="reference" />
+		<attr name="add_width" format="dimension" />
+		<attr name="add_height" format="dimension" />
+	</declare-styleable>
+
+	<declare-styleable name="RecyclerView">
+	</declare-styleable>
+
+	<declare-styleable name="SlidingUpPanel">
+		<attr name="maxHeight" format="dimension" />
+	</declare-styleable>
+
+	<!-- 自定义比例视图 -->
+	<declare-styleable name="RectViewBounds">
+		<attr name="widthToheight" format="float"/>
+	</declare-styleable>
+
+
+	<declare-styleable name="ShareView">
+		<attr name="pic_mode" format="boolean"/>
+	</declare-styleable>
+</resources>

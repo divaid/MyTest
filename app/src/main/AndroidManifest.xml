@@ -35,6 +35,11 @@
         <activity android:name=".test.pulltorefreshtest.PullRefreshTestActivity">
 
         </activity>
+        <activity android:name=".test.pulltorefreshtest.PullListActivity"/>
+        <activity android:name=".test.pulltorefreshtest.PullGridActivity"/>
+        <activity android:name=".test.pulltorefreshtest.PullWebActivity"/>
+        <activity android:name=".test.pulltorefreshtest.PullScrollActivity"/>
+        <activity android:name=".test.pulltorefreshtest.PullRecyclerActivity"/>
         <activity android:name=".test.day_6_27_autolinetest.AutoLineTestActivity">
 
         </activity>

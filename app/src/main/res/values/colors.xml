@@ -5,4 +5,6 @@
     <!--状态栏颜色-->
     <color name="colorPrimaryDark">#3f8659</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="transparent">#00000000</color>
 </resources>
