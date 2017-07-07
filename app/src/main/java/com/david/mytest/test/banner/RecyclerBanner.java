@@ -23,7 +23,6 @@ import java.util.List;
 /**
  * Created by weixi on 2017/6/30.
  */
-
 public class RecyclerBanner extends FrameLayout {
     RecyclerView mRecyclerView;
     LinearLayout mDotContainer;
@@ -79,7 +78,6 @@ public class RecyclerBanner extends FrameLayout {
         selectedDrawable.setCornerRadius(mDotSize);
         selectedDrawable.setColor(0xff0094ff);
 
-        mRecyclerView = new RecyclerView(context);
         LayoutParams vpLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mDotContainer = new LinearLayout(context);
         mDotContainer.setOrientation(LinearLayout.HORIZONTAL);
@@ -87,28 +85,36 @@ public class RecyclerBanner extends FrameLayout {
         mDotContainer.setGravity(Gravity.CENTER);
         mDotContainer.setPadding(mDotSize * 2, mDotSize * 2, mDotSize * 2, mDotSize * 2);
         linearLayoutParams.gravity = Gravity.BOTTOM;
-        addView(mRecyclerView, vpLayoutParams);
-        addView(mDotContainer, linearLayoutParams);
 
+        mRecyclerView = new RecyclerView(context);
         new PagerSnapHelper().attachToRecyclerView(mRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         mAdapter = new RecyclerAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    int first = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
-                    int last = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
-                    if (currentIndex != (first + last) / 2) {
-                        currentIndex = (first + last) / 2;
-                        changePoint();
-                    }
+//                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                int first = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+                int last = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+                int current;
+                if (first==0){
+                    current = (int) Math.round((first + last) / 2.0 - 0.1);
+                } else {
+                    current = (int) Math.round((first + last) / 2.0);
                 }
+                if (currentIndex != current) {
+                    currentIndex = current;
+                    changePoint();
+                }
+//                }
             }
         });
+
+        addView(mRecyclerView, vpLayoutParams);
+        addView(mDotContainer, linearLayoutParams);
+
 
         /*
         //初始化比例
@@ -214,7 +220,6 @@ public class RecyclerBanner extends FrameLayout {
         }
         super.onWindowVisibilityChanged(visibility);
     }
-
 
     /**
      * height width ratio
