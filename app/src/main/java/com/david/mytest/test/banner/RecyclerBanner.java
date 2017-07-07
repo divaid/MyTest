@@ -95,20 +95,26 @@ public class RecyclerBanner extends FrameLayout {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-//                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                 int first = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 int last = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
                 int current;
-                if (first==0){
+                if (first == 0) {
                     current = (int) Math.round((first + last) / 2.0 - 0.1);
                 } else {
                     current = (int) Math.round((first + last) / 2.0);
                 }
+
                 if (currentIndex != current) {
                     currentIndex = current;
                     changePoint();
                 }
-//                }
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (currentIndex == mData.size() - 1) {
+                        mRecyclerView.scrollToPosition(1);
+                    } else if (currentIndex == 0) {
+                        mRecyclerView.scrollToPosition(mData.size() - 2);
+                    }
+                }
             }
         });
 
@@ -147,13 +153,16 @@ public class RecyclerBanner extends FrameLayout {
 
     public int setDatas(List<? extends BannerEntity> datas) {
         setPlaying(false);
-        this.mData.clear();
         mDotContainer.removeAllViews();
         if (mData != null) {
-            this.mData.addAll(datas);
+            this.mData.clear();
+        } else {
+            this.mData = new ArrayList<>();
         }
+        this.mData.addAll(datas);
+
         if (this.mData.size() > 1) {
-            currentIndex = 0;
+            currentIndex = 1;//设置无限循环播放
             mAdapter.notifyDataSetChanged();
             mRecyclerView.scrollToPosition(currentIndex);
             for (int i = 0; i < this.mData.size(); i++) {
@@ -165,6 +174,10 @@ public class RecyclerBanner extends FrameLayout {
                 mDotContainer.addView(img, lp);
             }
             setPlaying(true);
+
+
+            mData.add(0, mData.get(mData.size() - 1));
+            mData.add(mData.get(1));
         } else {
             currentIndex = 0;
             mAdapter.notifyDataSetChanged();
@@ -315,8 +328,16 @@ public class RecyclerBanner extends FrameLayout {
 
     private void changePoint() {
         if (mDotContainer != null && mDotContainer.getChildCount() > 0) {
-            for (int i = 0; i < mDotContainer.getChildCount(); i++) {
-                ((ImageView) mDotContainer.getChildAt(i)).setImageDrawable(i == currentIndex % mData.size() ? selectedDrawable : defaultDrawable);
+            int childCount = mDotContainer.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                ((ImageView) mDotContainer.getChildAt(i)).setImageDrawable(defaultDrawable);
+            }
+            if (currentIndex == 0) {
+                ((ImageView) mDotContainer.getChildAt(childCount - 1)).setImageDrawable(selectedDrawable);
+            } else if (currentIndex == mData.size() - 1) {
+                ((ImageView) mDotContainer.getChildAt(0)).setImageDrawable(selectedDrawable);
+            } else {
+                ((ImageView) mDotContainer.getChildAt(currentIndex - 1)).setImageDrawable(selectedDrawable);
             }
         }
     }
