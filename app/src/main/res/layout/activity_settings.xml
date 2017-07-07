@@ -22,40 +22,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
         android:layout_gravity="center_horizontal"
         android:textSize="18sp"
         android:text="版本:1.0"
         />
 
-    <View
-        android:layout_width="match_parent"
-        android:background="@color/black"
-        android:layout_marginTop="20dp"
-        android:layout_height="1dp"/>
+    <include layout="@layout/widget_horizontal_divider"/>
 
     <LinearLayout
         android:id="@+id/ll_version_update"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
-        android:weightSum="8"
         android:background="@color/color_grayish"
+        android:paddingLeft="10dp"
         >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_mine_update"
+            android:scaleType="fitCenter"
+            android:id="@+id/imageView2" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
             android:layout_gravity="center_vertical"
             android:textSize="20sp"
             android:text="版本更新"
-            />
+            android:id="@+id/textView" />
 
         <TextView
             android:id="@+id/tv_update"
-            android:layout_width="match_parent"
-            android:layout_weight="6"
+            android:layout_width="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -65,86 +68,129 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:text="新版本"
-            android:visibility="gone"
             />
 
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:src="@drawable/arrow_right"
+            />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:background="@color/black"
-        android:layout_height="1dp"/>
+    <include layout="@layout/widget_horizontal_divider"/>
 
     <LinearLayout
         android:id="@+id/ll_function_introduction"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
-        android:weightSum="8"
         android:background="@color/color_grayish"
+        android:paddingLeft="10dp"
         >
-
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_mine_descript"
+            android:scaleType="fitCenter"
+            />
         <TextView
-            android:layout_width="match_parent"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:textSize="20sp"
             android:text="功能介绍"
             />
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:gravity="center_horizontal"
-            android:padding="2dp"
+            android:padding="8dp"
             android:src="@drawable/arrow_right"
             />
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:background="@color/black"
-        android:layout_height="1dp"/>
+    <include layout="@layout/widget_horizontal_divider"/>
 
     <LinearLayout
         android:id="@+id/ll_help"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
-        android:weightSum="8"
         android:background="@color/color_grayish"
+        android:paddingLeft="10dp"
         >
-
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_mine_help"
+            android:scaleType="fitCenter"
+            />
         <TextView
             android:layout_width="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
             android:layout_gravity="center_vertical"
             android:textSize="20sp"
             android:text="帮助"
-            />
+            android:id="@+id/textView2" />
+
+
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:gravity="center_horizontal"
-            android:padding="2dp"
+            android:padding="8dp"
             android:src="@drawable/arrow_right"
             />
 
     </LinearLayout>
 
-    <View
+    <include layout="@layout/widget_horizontal_divider"/>
+
+    <LinearLayout
+        android:id="@+id/about_us"
         android:layout_width="match_parent"
-        android:background="@color/black"
-        android:layout_height="1dp"/>
+        android:layout_height="40dp"
+        android:paddingLeft="10dp"
+        >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_mine_info"
+            android:scaleType="fitCenter"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="关于"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:src="@drawable/arrow_right"
+            />
+    </LinearLayout>
+    <include layout="@layout/widget_horizontal_divider"/>
 
 </LinearLayout>

@@ -6,19 +6,17 @@ import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.david.mytest.R;
 import com.david.mytest.activity.base.BaseActivity;
+import com.david.mytest.utils.ToastUtil;
 import com.orhanobut.logger.Logger;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 
 import java.io.File;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
@@ -31,16 +29,6 @@ import okhttp3.Call;
 public class SettingsActivity extends BaseActivity {
     private static final String TAG = "SettingsActivity";
     private static final String downloadUrl = "http://182.92.6.139:80/apk/school_2.17_117.apk";
-    @BindView(R.id.tv_version_number)
-    TextView mVersionNumber;
-    @BindView(R.id.tv_update)
-    TextView mUpdate;
-    @BindView(R.id.ll_version_update)
-    LinearLayout mVersionUpdate;
-    @BindView(R.id.ll_function_introduction)
-    LinearLayout mFunctionIntroduction;
-    @BindView(R.id.ll_help)
-    LinearLayout mHelp;
 
     private NotificationCompat.Builder mBuilder;
     private NotificationManager mNotificationManager;
@@ -61,7 +49,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.ll_version_update, R.id.ll_function_introduction, R.id.ll_help})
+    @OnClick({R.id.ll_version_update, R.id.ll_function_introduction, R.id.ll_help, R.id.about_us})
     public void onClick(View view) {
         Intent intent = new Intent(this, com.david.mytest.service.UpdateService1.class);
         switch (view.getId()) {
@@ -78,6 +66,9 @@ public class SettingsActivity extends BaseActivity {
                 Intent update = new Intent(this, com.david.mytest.update.UpdateService.class);
                 update.putExtra("apkUrl",downloadUrl);
                 startService(update);
+                break;
+            case R.id.about_us:
+                ToastUtil.showLong("关于");
                 break;
         }
     }

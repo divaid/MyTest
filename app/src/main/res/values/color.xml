@@ -6,4 +6,6 @@
     <color name="indicator_color">#40000000</color>
     <color name="color_red">#ff0000</color>
     <color name="darker_gray">#aaa</color>
+
+    <color name="divider_color">#7e7e7e</color>
 </resources>

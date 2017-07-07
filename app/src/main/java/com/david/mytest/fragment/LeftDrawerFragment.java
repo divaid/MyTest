@@ -36,8 +36,6 @@ public class LeftDrawerFragment extends BaseFragment {
 
     @BindView(R.id.settings)
     LinearLayout mSettings;
-    @BindView(R.id.about_us)
-    LinearLayout mAboutUs;
     @BindView(R.id.tv_popupwindow)
     TextView tvPopupwindow;
     @BindView(R.id.tv_download)
@@ -74,14 +72,12 @@ public class LeftDrawerFragment extends BaseFragment {
         mainActivity = (MainActivity) getActivity();
     }
 
-    @OnClick({R.id.my_widget, R.id.settings, R.id.about_us, R.id.tv_popupwindow, R.id.tv_download, R.id.tv_test, R.id.tv_activity_anim, R.id.tv_test1, R.id.tv_activity_new_widget,R.id.tv_activity_RxJava})
+    @OnClick({R.id.my_widget, R.id.settings, R.id.tv_popupwindow, R.id.tv_download, R.id.tv_test, R.id.tv_activity_anim, R.id.tv_test1, R.id.tv_activity_new_widget,R.id.tv_activity_RxJava})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.settings:     //设置页面
                 openActivity(getContext(), SettingsActivity.class);
                 mainActivity.drawerLayout.closeDrawer(Gravity.LEFT);    //关闭侧滑菜单
-                break;
-            case R.id.about_us:
                 break;
             case R.id.tv_popupwindow:   //PopupWindow测试页面
                 openActivity(getContext(), PopupTestActivity.class);
