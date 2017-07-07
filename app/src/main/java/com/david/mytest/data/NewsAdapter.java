@@ -94,7 +94,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onClick(View v) {
-        NewsMsgBean.StoriesBean bean = mData.get((Integer) v.getTag());
+        NewsMsgBean.StoriesBean bean = mData.get((Integer) v.getTag() - 1);
         Intent intent = new Intent(mContext, DetailActivity.class);
         intent.putExtra(NEWS_ID,bean.getId());
         mContext.startActivity(intent);
