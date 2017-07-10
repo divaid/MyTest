@@ -13,28 +13,14 @@ import com.david.mytest.R;
 
 public class AutoLineTestActivity extends AppCompatActivity {
     private Button btn_add;
-    private BamAutoLineList bal_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autoline_test);
 
-//        btn_add = (Button) findViewById(R.id.btn_add);
-//        bal_list = (BamAutoLineList) findViewById(R.id.bal_list);
 
-        // 点击事件
-//        btn_add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // 实例化View
-//                View item = createView();
-//                // 把View放到控件里去
-//                bal_list.addView(item);
-//            }
-//        });
-
-        ((MyViewGroup) findViewById(R.id.myviewgroup)).setOnViewClickListener(new MyViewGroup.OnViewClickListener() {
+        ((AutoLineView) findViewById(R.id.myviewgroup)).setOnViewClickListener(new AutoLineView.OnViewClickListener() {
             @Override
             public void OnViewClick(int position) {
                 Toast.makeText(AutoLineTestActivity.this, "you clicked "+ position, Toast.LENGTH_LONG).show();

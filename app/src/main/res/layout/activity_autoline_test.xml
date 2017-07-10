@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <com.david.mytest.test.day_6_27_autolinetest.MyViewGroup
+        <com.david.mytest.test.day_6_27_autolinetest.AutoLineView
             android:id="@+id/myviewgroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -103,7 +103,7 @@
                 android:text="测试19999999999"
                 />
             </FrameLayout>
-        </com.david.mytest.test.day_6_27_autolinetest.MyViewGroup>
+        </com.david.mytest.test.day_6_27_autolinetest.AutoLineView>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

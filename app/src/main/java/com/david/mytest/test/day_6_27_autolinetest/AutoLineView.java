@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyViewGroup extends ViewGroup implements View.OnClickListener {
+public class AutoLineView extends ViewGroup implements View.OnClickListener {
 
 	interface OnViewClickListener{//条目点击事件
 		void OnViewClick(int position);
 	}
 
-	static final String TAG = MyViewGroup.class.getName();
+	static final String TAG = AutoLineView.class.getName();
 	/** 
      * 存储所有的View，按行记录 
      * 每个item就是记录的每行的view
@@ -28,12 +28,12 @@ public class MyViewGroup extends ViewGroup implements View.OnClickListener {
      */  
     private List<Integer> mLineHeight = new ArrayList<Integer>();  
 
-	public MyViewGroup(Context context) {
+	public AutoLineView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
 
-	public MyViewGroup(Context context, AttributeSet attrs) {
+	public AutoLineView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
