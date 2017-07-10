@@ -1,6 +1,6 @@
 package com.david.mytest.requestApi;
 
-import com.david.mytest.requestBean.LatestMsgBean;
+import com.david.mytest.requestBean.NewsMsgBean;
 import com.david.mytest.requestBean.ThemeDailyBean;
 import com.david.mytest.requestBean.ThemesBean;
 
@@ -10,13 +10,13 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 /**
- * Created by david on 2016/11/28.
+ * Created by David on 2016/11/28.
  */
 
 public interface RequestApi {
     //http://news-at.zhihu.com/api/4/news/latest
     @GET("news/latest")
-    Call<LatestMsgBean> getLatestMsg();
+    Call<NewsMsgBean> getLatestMsg();
 
     //http://news-at.zhihu.com/api/4/theme/12
     @GET("theme/{id}")
@@ -26,5 +26,7 @@ public interface RequestApi {
     @GET("themes")
     Flowable<ThemesBean> getThemes();
 
+    @GET("news/latest")
+    Flowable<NewsMsgBean> getMsgs();
 
 }

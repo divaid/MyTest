@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import com.david.mytest.R;
 import com.david.mytest.activity.base.BaseActivity;
+import com.david.mytest.request.ErrorResponse;
+import com.david.mytest.request.OnRequestListener;
+import com.david.mytest.requestBean.ThemesBean;
+import com.david.mytest.utils.ReTrofitManager;
+import com.david.mytest.utils.ToastUtil;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.orhanobut.logger.Logger;
 
@@ -139,17 +144,17 @@ public class RxJavaTestActivity extends BaseActivity {
                 .build();
         //通过代理的方法,得到Api接口.
         final com.david.mytest.requestApi.RequestApi requestApi = retrofit.create(com.david.mytest.requestApi.RequestApi.class);
-        Call<com.david.mytest.requestBean.LatestMsgBean> call = requestApi.getLatestMsg();
+        Call<com.david.mytest.requestBean.NewsMsgBean> call = requestApi.getLatestMsg();
         //异步执行Http请求
-        call.enqueue(new Callback<com.david.mytest.requestBean.LatestMsgBean>() {
+        call.enqueue(new Callback<com.david.mytest.requestBean.NewsMsgBean>() {
             @Override
-            public void onResponse(Call<com.david.mytest.requestBean.LatestMsgBean> call, Response<com.david.mytest.requestBean.LatestMsgBean> response) {
-                com.david.mytest.requestBean.LatestMsgBean latestMsgBean = response.body();
+            public void onResponse(Call<com.david.mytest.requestBean.NewsMsgBean> call, Response<com.david.mytest.requestBean.NewsMsgBean> response) {
+                com.david.mytest.requestBean.NewsMsgBean latestMsgBean = response.body();
                 Logger.d(latestMsgBean);
             }
 
             @Override
-            public void onFailure(Call<com.david.mytest.requestBean.LatestMsgBean> call, Throwable t) {
+            public void onFailure(Call<com.david.mytest.requestBean.NewsMsgBean> call, Throwable t) {
 
             }
         });
@@ -179,7 +184,28 @@ public class RxJavaTestActivity extends BaseActivity {
         });
     }
 
+    private void newRxJAva_Retrofit(){
+        ReTrofitManager.getResponse("http://news-at.zhihu.com/api/4/", new OnRequestListener<ThemesBean>() {
+            @Override
+            public void onSuccess(com.david.mytest.requestBean.ThemesBean o) {
+                ToastUtil.showLong(o.toString());
+            }
+
+            @Override
+            public void onError(ErrorResponse o) {
+                ToastUtil.showLong(o.getMsg());
+            }
+
+            @Override
+            public void onSystemError(ErrorResponse o) {
+                ToastUtil.showLong(o.getMsg());
+            }
+        });
+    }
+
     private void useRxJava_Retrofit() {
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://news-at.zhihu.com/api/4/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -345,7 +371,8 @@ public class RxJavaTestActivity extends BaseActivity {
                 break;
 
             case R.id.btn_both:
-                useRxJava_Retrofit();
+//                useRxJava_Retrofit();
+                newRxJAva_Retrofit();
                 break;
 
             case R.id.btn_send:

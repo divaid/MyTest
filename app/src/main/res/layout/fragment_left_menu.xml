@@ -13,8 +13,7 @@
         android:paddingLeft="30dp"
         android:paddingTop="15dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/civ_head"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -42,10 +41,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingTop="15dp"
         android:layout_weight="1"
         android:background="@color/white"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:paddingTop="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,34 +95,29 @@
         </LinearLayout>
     </ScrollView>
 
-    <View
+    <include layout="@layout/widget_horizontal_divider" />
+
+    <LinearLayout
+        android:id="@+id/settings"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#eeeeee" />
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:paddingLeft="20dp">
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/icon_mine_setting" />
 
-        <LinearLayout
-            android:id="@+id/settings"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingLeft="20dp"
-            android:background="@color/white"
-            >
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@drawable/icon_mine_setting" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:gravity="center"
-                android:text="设置"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="设置"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
 </LinearLayout>

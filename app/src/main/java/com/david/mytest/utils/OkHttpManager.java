@@ -21,7 +21,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by hnthgys on 2016/7/7.
+ * Created by David on 2017/6/7.
  * 对OkHttp的简单二次封装
  */
 public class OkHttpManager {
@@ -77,18 +77,16 @@ public class OkHttpManager {
                 .url(url)
                 .build();
         deliveryResult(callback,request);
-
     }
-
 
     public static abstract class ResultCallback<T>{
         Type mType;
 
         public ResultCallback() {
-            mType = getSupperclassTypeParamer(getClass());
+            mType = getSupperClassTypeParam(getClass());
         }
 
-        static Type getSupperclassTypeParamer(Class<?> subClass){
+        static Type getSupperClassTypeParam(Class<?> subClass){
             Type superClass = subClass.getGenericSuperclass();
             if (superClass instanceof Class)
                 throw new RuntimeException("Missing type parameter.");
@@ -96,7 +94,15 @@ public class OkHttpManager {
             return $Gson$Types.canonicalize(parameterizedType.getActualTypeArguments()[0]);
         }
 
+        private void onFail(Request request,Exception e){
+            if (NetWorkUtils.isNetworkAvailable()){
+                onError(request, e);
+            } else{
+                onSystemError(request, e);
+            }
+        }
 
+        public abstract void onSystemError(Request request,Exception e);
 
         public abstract void onError(Request request,Exception e);
 
@@ -117,7 +123,6 @@ public class OkHttpManager {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
                 try {
                     String string = response.body().string();
                     if (callback.mType == String.class){
@@ -146,7 +151,7 @@ public class OkHttpManager {
             @Override
             public void run() {
                 if (callback != null) {
-                    callback.onError(request,e);
+                    callback.onFail(request,e);
                 }
             }
         });
@@ -178,9 +183,9 @@ public class OkHttpManager {
     }
 
     /**
-     * 使用Picasso显示网络图片
-     * @param url
-     * @param view
+     * 使用Picasso显示网络图片,TODO 切换为使用Glide
+     * @param url 请求地址
+     * @param view ImageView
      */
     public static void displayImage(String url, ImageView view) {
         if (!TextUtils.isEmpty(url)) {
@@ -193,5 +198,4 @@ public class OkHttpManager {
             view.setImageResource(R.drawable.hacker);
         }
     }
-
 }

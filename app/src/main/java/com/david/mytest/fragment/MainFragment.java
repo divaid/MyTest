@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,18 @@ import android.view.ViewGroup;
 import com.david.mytest.R;
 import com.david.mytest.activity.detail.DetailActivity;
 import com.david.mytest.data.NewsAdapter;
+import com.david.mytest.request.ErrorResponse;
+import com.david.mytest.request.OnRequestListener;
 import com.david.mytest.requestBean.NewsMsgBean;
 import com.david.mytest.test.banner.RecyclerBanner;
 import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshBase;
 import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshRecyclerView;
-import com.david.mytest.utils.OkHttpManager;
-import com.orhanobut.logger.Logger;
+import com.david.mytest.utils.ReTrofitManager;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Request;
 
 import static com.david.mytest.activity.detail.DetailActivity.NEWS_ID;
 
@@ -102,23 +101,11 @@ public class MainFragment extends BaseFragment {
     }
 
     private void requestData() {
-        OkHttpManager.getAsyn("http://news-at.zhihu.com/api/4/news/latest", new OkHttpManager.ResultCallback<NewsMsgBean>() {
-
+        ReTrofitManager.getResponse("http://news-at.zhihu.com/api/4/", new OnRequestListener<NewsMsgBean>() {
             @Override
-            public void onError(Request request, Exception e) {
-//                swipeContainer.setRefreshing(false);
+            public void onSuccess(NewsMsgBean o) {
                 mRefreshView.onRefreshComplete();
-//                isRefreshing = false;
-                Log.d("TAG", e.getMessage());
-            }
-
-            @Override
-            public void onSuccess(NewsMsgBean response) {
-//                swipeContainer.setRefreshing(false);    //隐藏刷新进度条
-                mRefreshView.onRefreshComplete();
-//                isRefreshing = false;
-                Logger.d(response);
-                mNewsData = response;
+                mNewsData = o;
                 List<NewsMsgBean.TopStoriesBean> top_stories = mNewsData.getTop_stories();
 
                 adapter = new NewsAdapter(getActivity(), mNewsData.getStories());
@@ -127,7 +114,45 @@ public class MainFragment extends BaseFragment {
                 setHeader(recyclerView, top_stories);
             }
 
+            @Override
+            public void onError(ErrorResponse o) {
+                mRefreshView.onRefreshComplete();
+                // TODO: 2017/7/7 展示错误页面
+            }
+
+            @Override
+            public void onSystemError(ErrorResponse o) {
+                mRefreshView.onRefreshComplete();
+
+            }
         });
+
+//        OkHttpManager.getAsyn("http://news-at.zhihu.com/api/4/news/latest", new OkHttpManager.ResultCallback<NewsMsgBean>() {
+//
+//            @Override
+//            public void onError(Request request, Exception e) {
+////                swipeContainer.setRefreshing(false);
+//                mRefreshView.onRefreshComplete();
+////                isRefreshing = false;
+//                Log.d("TAG", e.getMessage());
+//            }
+//
+//            @Override
+//            public void onSuccess(NewsMsgBean response) {
+////                swipeContainer.setRefreshing(false);    //隐藏刷新进度条
+//                mRefreshView.onRefreshComplete();
+////                isRefreshing = false;
+//                Logger.d(response);
+//                mNewsData = response;
+//                List<NewsMsgBean.TopStoriesBean> top_stories = mNewsData.getTop_stories();
+//
+//                adapter = new NewsAdapter(getActivity(), mNewsData.getStories());
+//                recyclerView.setAdapter(adapter);
+//
+//                setHeader(recyclerView, top_stories);
+//            }
+//
+//        });
     }
 
     private void setHeader(RecyclerView recycleView, List<NewsMsgBean.TopStoriesBean> top_stories) {

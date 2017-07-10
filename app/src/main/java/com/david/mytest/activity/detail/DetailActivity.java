@@ -46,6 +46,11 @@ public class DetailActivity extends BaseActivity {
     private void requestData(String newsId) {
         com.david.mytest.utils.OkHttpManager.getAsyn("http://news-at.zhihu.com/api/4/news/" + newsId, new com.david.mytest.utils.OkHttpManager.ResultCallback<com.david.mytest.requestBean.NewsDetailsBean>() {
             @Override
+            public void onSystemError(Request request, Exception e) {
+
+            }
+
+            @Override
             public void onError(Request request, Exception e) {
                 Toast.makeText(com.david.mytest.utils.UiUtils.getContext(),"网络连接失败,请检查网络连接!",Toast.LENGTH_SHORT).show();
             }

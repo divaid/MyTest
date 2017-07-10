@@ -9,7 +9,8 @@ import android.widget.TextView;
 import com.david.mytest.R;
 
 /**
- * 也可设置上面与下面图片
+ * 也可设置上面与下面图片,对于搜索输入框中的叉图片也可以如此设置同时添加onTouchListener来设置点击
+ * 图标事件
  * Created by wb-cuiweixing on 2016/7/9.
  */
 
