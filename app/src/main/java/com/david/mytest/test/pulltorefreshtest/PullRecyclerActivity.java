@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.david.mytest.R;
 import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshBase;
 import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshRecyclerView;
+import com.david.mytest.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,12 @@ public class PullRecyclerActivity extends Activity {
         mRefreshView.getRefreshableView().setLayoutManager(manager1);
         mRefreshView.getRefreshableView().setAdapter(new MyAdapter());
         mRefreshView.setMode(PullToRefreshBase.Mode.BOTH);
+        mRefreshView.setOnLastItemVisibleListener(new PullToRefreshBase.OnLastItemVisibleListener() {
+            @Override
+            public void onLastItemVisible() {
+                ToastUtil.showLong("此处一般是自动加载更多");
+            }
+        });
         mRefreshView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<RecyclerView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<RecyclerView> refreshView) {
@@ -57,7 +64,7 @@ public class PullRecyclerActivity extends Activity {
 
     private void initData(){
         mData = new ArrayList<>();
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 26; i++) {
             mData.add("item "+ i);
         }
     }

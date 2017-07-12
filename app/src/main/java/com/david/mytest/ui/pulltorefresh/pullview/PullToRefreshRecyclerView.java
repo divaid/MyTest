@@ -9,8 +9,8 @@ import com.david.mytest.R;
 /**
  * Created by David on 2016/7/5.
  */
-
 public class PullToRefreshRecyclerView extends PullToRefreshBase<RecyclerView> {
+    private OnLastItemVisibleListener mOnLastItemVisibleListener;
     public PullToRefreshRecyclerView(Context context) {
         super(context);
     }
@@ -31,17 +31,34 @@ public class PullToRefreshRecyclerView extends PullToRefreshBase<RecyclerView> {
     @Override
     protected RecyclerView createRefreshableView(Context context, AttributeSet attrs) {
         RecyclerView recyclerView =new RecyclerView(context, attrs);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && null != mOnLastItemVisibleListener && isLastItemVisible()) {
+                    mOnLastItemVisibleListener.onLastItemVisible();
+                }
+            }
+        });
         recyclerView.setId(R.id.recyclerview);
         return recyclerView;
     }
 
     @Override
     protected boolean isReadyForPullEnd() {
-        return !mRefreshableView.canScrollVertically(1);//不能向上滑动时可以加载更多
+        return isLastItemVisible();//不能向上滑动时可以加载更多
     }
 
     @Override
     protected boolean isReadyForPullStart() {
         return !mRefreshableView.canScrollVertically(-1);//不能向下滑动时可以刷新
+    }
+
+    public boolean isLastItemVisible(){
+        return !mRefreshableView.canScrollVertically(1);
+    }
+
+    public void setOnLastItemVisibleListener(OnLastItemVisibleListener mOnLastItemVisibleListener) {
+        this.mOnLastItemVisibleListener = mOnLastItemVisibleListener;
     }
 }
