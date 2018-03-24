@@ -58,6 +58,10 @@
                 android:text="PopupWindow" />
 
             <TextView
+                android:id="@+id/tv_drag"
+                style="@style/LeftDrawerFragment_textView"
+                android:text="draglayout" />
+            <TextView
                 android:id="@+id/tv_download"
                 style="@style/LeftDrawerFragment_textView"
                 android:text="多线程断点续传下载" />
@@ -91,7 +95,10 @@
                 android:id="@+id/tv_activity_RxJava"
                 style="@style/LeftDrawerFragment_textView"
                 android:text="RxJava测试" />
-
+            <TextView
+                android:id="@+id/tv_activity_animtest"
+                style="@style/LeftDrawerFragment_textView"
+                android:text="动画测试" />
         </LinearLayout>
     </ScrollView>
 

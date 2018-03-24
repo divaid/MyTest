@@ -67,6 +67,8 @@ dependencies {
     //android6.0以上要使用1.5版本的
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
 
+    compile 'com.android.support:percent:22.2.0'
+
     //uiautomator2配置
 //    androidTestCompile 'com.android.support.test:runner:0.4'
     // Set this dependency to use JUnit 4 rules

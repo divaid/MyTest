@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.david.mytest.test.banner.RecyclerBanner
+    <com.david.mytest.test.banner.RecyclerViewBanner
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

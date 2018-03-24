@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.david.mytest.R;
+import com.david.mytest.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +23,10 @@ import java.util.List;
  */
 
 public class BannerTestActivity extends Activity {
-    private RecyclerBanner mBanner;
+    private RecyclerViewBanner mBanner;
     private RecyclerView mRecyclerView;//演示类似于盒马个人页滑动条
 
-    private List<RecyclerBanner.BannerEntity> mImages;
+    private List<RecyclerViewBanner.BannerEntity> mImages;
     private List<String> mRecyclerData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,17 +60,17 @@ public class BannerTestActivity extends Activity {
 
         new LinearSnapHelper().attachToRecyclerView(mRecyclerView);
 
-        mBanner = (RecyclerBanner) findViewById(R.id.banner);
+        mBanner = (RecyclerViewBanner) findViewById(R.id.banner);
         mBanner.setDatas(mImages);
-        mBanner.setOnPagerClickListener(new RecyclerBanner.OnPagerClickListener() {
+        mBanner.setOnPagerClickListener(new RecyclerViewBanner.OnPagerClickListener() {
             @Override
-            public void onClick(RecyclerBanner.BannerEntity entity) {
-                Toast.makeText(BannerTestActivity.this, "you clicked "+entity.getUrl(),Toast.LENGTH_LONG).show();
+            public void onClick(RecyclerViewBanner.BannerEntity entity) {
+                ToastUtil.showLong(entity.toString());
             }
         });
     }
 
-    class MyImageUrl implements RecyclerBanner.BannerEntity{
+    class MyImageUrl implements RecyclerViewBanner.BannerEntity{
         private String mImageUrl;
 
         public MyImageUrl(String mImageUrl) {

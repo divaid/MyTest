@@ -15,7 +15,9 @@ import com.david.mytest.activity.main.MainActivity;
 import com.david.mytest.R;
 import com.david.mytest.activity.mine.ActivityTestMyWidget;
 import com.david.mytest.activity.mine.Android6NewWidget;
+import com.david.mytest.activity.mine.AnimateTestActivity;
 import com.david.mytest.activity.mine.DownLoadActivity;
+import com.david.mytest.activity.mine.DragLayoutTestActivity;
 import com.david.mytest.activity.mine.PopupTestActivity;
 import com.david.mytest.activity.mine.RxJavaTestActivity;
 import com.david.mytest.activity.mine.SettingsActivity;
@@ -72,11 +74,15 @@ public class LeftDrawerFragment extends BaseFragment {
         mainActivity = (MainActivity) getActivity();
     }
 
-    @OnClick({R.id.my_widget, R.id.settings, R.id.tv_popupwindow, R.id.tv_download, R.id.tv_test, R.id.tv_activity_anim, R.id.tv_test1, R.id.tv_activity_new_widget,R.id.tv_activity_RxJava})
+    @OnClick({R.id.tv_drag,R.id.tv_activity_animtest, R.id.my_widget, R.id.settings, R.id.tv_popupwindow, R.id.tv_download, R.id.tv_test, R.id.tv_activity_anim, R.id.tv_test1, R.id.tv_activity_new_widget,R.id.tv_activity_RxJava})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.settings:     //设置页面
                 openActivity(getContext(), SettingsActivity.class);
+                mainActivity.drawerLayout.closeDrawer(Gravity.LEFT);    //关闭侧滑菜单
+                break;
+            case R.id.tv_drag:     //设置页面
+                openActivity(getContext(), DragLayoutTestActivity.class);
                 mainActivity.drawerLayout.closeDrawer(Gravity.LEFT);    //关闭侧滑菜单
                 break;
             case R.id.tv_popupwindow:   //PopupWindow测试页面
@@ -115,7 +121,10 @@ public class LeftDrawerFragment extends BaseFragment {
                 openActivity(getContext(),RxJavaTestActivity.class);
                 mainActivity.drawerLayout.closeDrawer(Gravity.LEFT);
                 break;
-
+            case R.id.tv_activity_animtest:
+                openActivity(getContext(),AnimateTestActivity.class);
+                mainActivity.drawerLayout.closeDrawer(Gravity.LEFT);
+                break;
 
         }
     }
