@@ -1,6 +1,8 @@
 package com.david.mytest.test.banner;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,28 +16,36 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.david.mytest.R;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * recommend this one, experience is better
  * Created by weixi on 2017/7/21.
  */
-
 public class RecyclerViewBanner extends FrameLayout {
-    RecyclerView recyclerView;
-    LinearLayout linearLayout;
-    GradientDrawable defaultDrawable,selectedDrawable;
+    public static final short NAV_DOT = 0;
+    public static final short NAV_BOTTOM_BAR = 1;
+    public static final short NAV_NUMBER = 2;
 
-    RecyclerAdapter adapter;
-    OnPagerClickListener onPagerClickListener;
+    private RecyclerView recyclerView;
+    private LinearLayout linearLayout;
+    private GradientDrawable defaultDrawable,selectedDrawable;
+    private TextView mNavNumber;
+
+    private RecyclerAdapter adapter;
+    private OnPagerClickListener onPagerClickListener;
     private List<BannerEntity> datas = new ArrayList<>();
 
-    int size,startX, startY,currentIndex;
-    boolean isPlaying;
+    private int size,startX, startY,currentIndex;
+    private boolean isPlaying;
+
+    private int mNavType;
 
     public interface OnPagerClickListener{
 
@@ -69,14 +79,7 @@ public class RecyclerViewBanner extends FrameLayout {
     public RecyclerViewBanner(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         size = (int) (6 * context.getResources().getDisplayMetrics().density + 0.5f);
-        defaultDrawable = new GradientDrawable();
-        defaultDrawable.setSize(size,size);
-        defaultDrawable.setCornerRadius(size);
-        defaultDrawable.setColor(0xffffffff);
-        selectedDrawable = new GradientDrawable();
-        selectedDrawable.setSize(size,size);
-        selectedDrawable.setCornerRadius(size);
-        selectedDrawable.setColor(0xff0094ff);
+        initNavView();
 
         recyclerView = new RecyclerView(context);
         LayoutParams vpLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -108,6 +111,74 @@ public class RecyclerViewBanner extends FrameLayout {
         });
     }
 
+    private void initNavView(int type){
+        if (type == NAV_DOT) {
+            if (linearLayout != null) {
+                linearLayout.setVisibility(VISIBLE);
+            }
+            if (mNavNumber != null && mNavNumber.getVisibility() == VISIBLE) {
+                mNavNumber.setVisibility(GONE);
+            }
+            defaultDrawable = new GradientDrawable();
+            defaultDrawable.setSize(size, size);
+            defaultDrawable.setCornerRadius(size);
+            defaultDrawable.setColor(0xffffffff);
+            selectedDrawable = new GradientDrawable();
+            selectedDrawable.setSize(size, size);
+            selectedDrawable.setCornerRadius(size);
+            selectedDrawable.setColor(0xff0094ff);
+        } else if (type == NAV_BOTTOM_BAR) {
+            if (linearLayout != null) {
+                linearLayout.setVisibility(VISIBLE);
+            }
+            if (mNavNumber != null && mNavNumber.getVisibility() == VISIBLE) {
+                mNavNumber.setVisibility(GONE);
+            }
+            int width = (getResources().getDisplayMetrics().widthPixels - 160) / (datas.size() == 0 ? 5 : datas.size());
+            defaultDrawable = new GradientDrawable();
+            defaultDrawable.setSize(width, size / 3);
+            defaultDrawable.setCornerRadius(0);
+            defaultDrawable.setColor(0xffffffff);
+            selectedDrawable = new GradientDrawable();
+            selectedDrawable.setSize(width, size / 3);
+            selectedDrawable.setCornerRadius(0);
+            selectedDrawable.setColor(0xff0094ff);
+        } else if (type == NAV_NUMBER) {
+            if (linearLayout != null) {
+                linearLayout.setVisibility(GONE);
+                linearLayout.removeAllViews();
+            }
+            if (mNavNumber != null) {
+                mNavNumber.setVisibility(VISIBLE);
+                return;
+            }
+            mNavNumber = new TextView(getContext());
+            mNavNumber.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            int roundRadius = 20; // 8dp 圆角半径
+            int strokeColor = Color.parseColor("#2E3135");//边框颜色
+            int fillColor = Color.parseColor("#DFDFE0");//内部填充颜色
+            GradientDrawable gd = new GradientDrawable();//创建drawable（动态创建shape）
+            gd.setColor(fillColor);
+            gd.setCornerRadius(roundRadius);
+//            int strokeWidth = 5; // 3dp 边框宽度
+//            gd.setStroke(strokeWidth, strokeColor);
+
+            mNavNumber.setBackground(gd);
+            mNavNumber.setGravity(Gravity.CENTER);
+            mNavNumber.setPadding(15, 6, 15, 6);
+            mNavNumber.setText("0/0");
+            LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.gravity = Gravity.RIGHT | Gravity.BOTTOM;
+            params.bottomMargin = 30;
+            params.rightMargin = 30;
+            addView(mNavNumber, params);
+        }
+    }
+
+    private void initNavView() {
+        initNavView(mNavType);
+    }
+
     public void setOnPagerClickListener(OnPagerClickListener onPagerClickListener) {
         this.onPagerClickListener = onPagerClickListener;
     }
@@ -122,31 +193,41 @@ public class RecyclerViewBanner extends FrameLayout {
         }
     }
 
-    public int setDatas(List<BannerEntity> datas){
+    @SuppressLint("DefaultLocale")
+    public void setData(List<? extends BannerEntity> data){
+        if (datas.size() == 0 && mNavType == NAV_BOTTOM_BAR) {
+            initNavView();
+        }
+
+
         setPlaying(false);
         this.datas.clear();
         linearLayout.removeAllViews();
-        if(datas != null){
-            this.datas.addAll(datas);
+        if(data != null){
+            this.datas.addAll(data);
         }
         if(this.datas.size() > 1){
             currentIndex = this.datas.size() * 10000;
             adapter.notifyDataSetChanged();
             recyclerView.scrollToPosition(currentIndex);
-            for (int i = 0; i < this.datas.size(); i++) {
-                ImageView img = new ImageView(getContext());
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                lp.leftMargin = size/2;
-                lp.rightMargin = size/2;
-                img.setImageDrawable(i == 0 ? selectedDrawable : defaultDrawable);
-                linearLayout.addView(img,lp);
+            if (mNavType != NAV_NUMBER) {
+                for (int i = 0; i < this.datas.size(); i++) {
+                    ImageView img = new ImageView(getContext());
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    lp.leftMargin = size / 2;
+                    lp.rightMargin = size / 2;
+                    img.setImageDrawable(i == 0 ? selectedDrawable : defaultDrawable);
+                    linearLayout.addView(img, lp);
+                }
+            } else {
+                mNavNumber.setText(String.format("1 / %d", datas.size()));
             }
             setPlaying(true);
         }else {
             currentIndex = 0;
             adapter.notifyDataSetChanged();
         }
-        return this.datas.size();
+        this.datas.size();
     }
 
     @Override
@@ -197,23 +278,80 @@ public class RecyclerViewBanner extends FrameLayout {
         }
         super.onWindowVisibilityChanged(visibility);
     }
+
+    /**
+     * height width ratio
+     */
+    private float ratio = 0.5f;
+
+    public void setRatio(float ratio) {
+        this.ratio = ratio;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        //获取宽度的模式和尺寸
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        //获取高度的模式和尺寸
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+
+        //宽确定，高不确定
+        if (widthMode == MeasureSpec.EXACTLY && heightMode != MeasureSpec.EXACTLY && ratio != 0) {
+            heightSize = (int) (widthSize * ratio + 0.5f);//根据宽度和比例计算高度
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY);
+        } else if (widthMode != MeasureSpec.EXACTLY && heightMode == MeasureSpec.EXACTLY & ratio != 0) {
+            widthSize = (int) (heightSize / ratio + 0.5f);
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
+        }
+
+        //必须调用下面的两个方法之一完成onMeasure方法的重写，否则会报错
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    /**
+     * set nav type
+     * @param navType type of nav(dot bar or number)
+     */
+    public void setNavType(int navType) {
+        if (navType != mNavType) {
+            initNavView(navType);
+            this.mNavType = navType;
+        }
+    }
+
+    public void onDestroy() {
+        setPlaying(false);
+        removeCallbacks(playTask);
+        playTask = null;
+
+        recyclerView.setAdapter(null);
+        recyclerView = null;
+        datas.clear();
+        datas = null;
+        datas = null;
+    }
+
     // 内置适配器
     private class RecyclerAdapter extends RecyclerView.Adapter implements OnClickListener {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            ImageView img = new ImageView(parent.getContext());
+            SimpleDraweeView img = new SimpleDraweeView(getContext());
             RecyclerView.LayoutParams l = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
             img.setLayoutParams(l);
             img.setId(R.id.icon);
             img.setOnClickListener(this);
-            return new RecyclerView.ViewHolder(img) {};
+            return new ImageHolder(img);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            Glide.with(getContext()).load(datas.get(position % datas.size()).getUrl()).centerCrop().placeholder(R.mipmap.ic_launcher).into((ImageView) holder.itemView.findViewById(R.id.icon));
+            ((ImageHolder) holder).img.setImageURI(datas.get(position % datas.size()).getUrl());
         }
 
         @Override
@@ -228,13 +366,20 @@ public class RecyclerViewBanner extends FrameLayout {
             }
         }
     }
+    private class ImageHolder extends RecyclerView.ViewHolder{
+        private SimpleDraweeView img;
+        public ImageHolder(View itemView) {
+            super(itemView);
+            img = (SimpleDraweeView) itemView;
+        }
+    }
 
     private class PagerSnapHelper extends LinearSnapHelper {
 
         @Override
         public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
             int targetPos = super.findTargetSnapPosition(layoutManager, velocityX, velocityY);
-            final View currentView = findSnapView(layoutManager);
+            View currentView = findSnapView(layoutManager);
             if(targetPos != RecyclerView.NO_POSITION && currentView != null){
                 int currentPosition = layoutManager.getPosition(currentView);
                 currentPosition = targetPos < currentPosition ?
@@ -248,11 +393,14 @@ public class RecyclerViewBanner extends FrameLayout {
         }
     }
 
+    @SuppressLint("DefaultLocale")
     private void changePoint(){
         if(linearLayout != null && linearLayout.getChildCount() > 0){
             for (int i = 0; i < linearLayout.getChildCount(); ++i) {
                 ((ImageView)linearLayout.getChildAt(i)).setImageDrawable(i == currentIndex % datas.size() ? selectedDrawable : defaultDrawable);
             }
+        } else if (mNavType == NAV_NUMBER && mNavNumber != null) {
+            mNavNumber.setText(String.format("%d / %d", currentIndex % datas.size() + 1, datas.size()));
         }
     }
 }

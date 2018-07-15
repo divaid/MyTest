@@ -24,16 +24,16 @@ import java.util.List;
  * Created by weixi on 2017/6/30.
  */
 public class RecyclerBanner extends FrameLayout {
-    RecyclerView mRecyclerView;
-    LinearLayout mDotContainer;
-    GradientDrawable defaultDrawable, selectedDrawable;
+    private RecyclerView mRecyclerView;
+    private LinearLayout mDotContainer;
+    private GradientDrawable defaultDrawable, selectedDrawable;
 
-    RecyclerAdapter mAdapter;
-    OnPagerClickListener mPageClickListener;
+    private RecyclerAdapter mAdapter;
+    private OnPagerClickListener mPageClickListener;
     private List<BannerEntity> mData = new ArrayList<>();
 
-    int mDotSize, startX, startY, currentIndex;
-    boolean isPlaying;
+    private int mDotSize, startX, startY, currentIndex;
+    private boolean isPlaying;
 
     public interface OnPagerClickListener {
 

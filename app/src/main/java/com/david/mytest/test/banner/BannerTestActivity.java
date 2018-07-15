@@ -61,7 +61,7 @@ public class BannerTestActivity extends Activity {
         new LinearSnapHelper().attachToRecyclerView(mRecyclerView);
 
         mBanner = (RecyclerViewBanner) findViewById(R.id.banner);
-        mBanner.setDatas(mImages);
+        mBanner.setData(mImages);
         mBanner.setOnPagerClickListener(new RecyclerViewBanner.OnPagerClickListener() {
             @Override
             public void onClick(RecyclerViewBanner.BannerEntity entity) {

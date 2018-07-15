@@ -16,6 +16,7 @@ import com.david.mytest.request.ErrorResponse;
 import com.david.mytest.request.OnRequestListener;
 import com.david.mytest.requestBean.NewsMsgBean;
 import com.david.mytest.test.banner.RecyclerBanner;
+import com.david.mytest.test.banner.RecyclerViewBanner;
 import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshBase;
 import com.david.mytest.ui.pulltorefresh.pullview.PullToRefreshRecyclerView;
 import com.david.mytest.utils.ReTrofitManager;
@@ -41,7 +42,7 @@ public class MainFragment extends BaseFragment {
     @BindView(R.id.recycle_view)
     PullToRefreshRecyclerView mRefreshView;
     private RecyclerView recyclerView;
-    private RecyclerBanner mHeader;
+    private RecyclerViewBanner mHeader;
 
     private NewsMsgBean mNewsData;
     private NewsAdapter adapter;
@@ -160,18 +161,20 @@ public class MainFragment extends BaseFragment {
             return;
         }
         if (mHeader == null) {
-            mHeader = (RecyclerBanner) LayoutInflater.from(getContext()).inflate(R.layout.widget_news_header, recycleView, false);
-            mHeader.setOnPagerClickListener(new RecyclerBanner.OnPagerClickListener() {
+            mHeader = (RecyclerViewBanner) LayoutInflater.from(getContext()).inflate(R.layout.widget_news_header, recycleView, false);
+            mHeader.setOnPagerClickListener(new RecyclerViewBanner.OnPagerClickListener() {
                 @Override
-                public void onClick(RecyclerBanner.BannerEntity entity) {
+                public void onClick(RecyclerViewBanner.BannerEntity entity) {
                     Intent intent = new Intent(getActivity(), DetailActivity.class);
                     intent.putExtra(NEWS_ID, ((NewsMsgBean.TopStoriesBean) entity).getId());
                     startActivity(intent);
                 }
             });
         }
+        mHeader.setNavType(RecyclerViewBanner.NAV_NUMBER);
 
-        mHeader.setDatas(top_stories);
+
+        mHeader.setData(top_stories);
 
         adapter.addHeaderView(mHeader);
     }
