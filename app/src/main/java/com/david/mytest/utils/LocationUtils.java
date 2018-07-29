@@ -59,9 +59,9 @@ public class LocationUtils {
                 @Override
                 public void onSuccessLocation(Location location) {
                     if (location != null) {
-//                        Toast.makeText(MainActivity.this, "gps onSuccessLocation location:  lat==" + location.getLatitude() + "     lng==" + location.getLongitude(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(RecordActivity.this, "gps onSuccessLocation location:  lat==" + location.getLatitude() + "     lng==" + location.getLongitude(), Toast.LENGTH_SHORT).show();
                     } else {
-//                        Toast.makeText(MainActivity.this, "gps location is null", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(RecordActivity.this, "gps location is null", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

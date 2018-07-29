@@ -1,6 +1,7 @@
 package com.david.mytest.requestBean;
 
 import com.david.mytest.test.banner.RecyclerBanner;
+import com.david.mytest.test.banner.RecyclerViewBanner;
 
 import java.util.List;
 
@@ -117,7 +118,7 @@ public class NewsMsgBean {
         }
     }
 
-    public static class TopStoriesBean implements RecyclerBanner.BannerEntity {
+    public static class TopStoriesBean implements RecyclerViewBanner.BannerEntity {
         private String image;
         private int type;
         private int id;

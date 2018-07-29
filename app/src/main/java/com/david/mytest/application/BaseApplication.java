@@ -2,6 +2,7 @@ package com.david.mytest.application;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -19,5 +20,7 @@ public class BaseApplication extends Application {
         mApplication = this;
 
         mWatcher = LeakCanary.install(this);
+
+        Fresco.initialize(this);
     }
 }

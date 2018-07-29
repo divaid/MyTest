@@ -53,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mWatcher.watch(this);
+//        mWatcher.watch(this);
 
         //这句话很关键,注意调用父类的方法
 //        super.setContentView(R.layout.activity_base);
