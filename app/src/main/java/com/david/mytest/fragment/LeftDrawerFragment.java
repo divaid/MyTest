@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.david.mytest.activity.main.MainActivity;
 import com.david.mytest.R;
@@ -24,6 +25,9 @@ import com.david.mytest.activity.mine.SettingsActivity;
 import com.david.mytest.activity.mine.AllCheckActivity;
 import com.david.mytest.activity.mine.SingleCheckActivity;
 import com.david.mytest.activity.mine.newwidget.TestFragmentActivity;
+import com.david.mytest.test.ActivityVerticalViewPager;
+import com.david.mytest.test.record.RecordActivity;
+import com.david.mytest.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +58,8 @@ public class LeftDrawerFragment extends BaseFragment {
     TextView tvMyWidget;
     @BindView(R.id.tv_activity_RxJava)
     TextView tvActivityRxJava;
+    @BindView(R.id.tv_activity_record)
+    TextView recordActivity;
     private MainActivity mainActivity;
 
     @Nullable
@@ -74,7 +80,7 @@ public class LeftDrawerFragment extends BaseFragment {
         mainActivity = (MainActivity) getActivity();
     }
 
-    @OnClick({R.id.tv_drag,R.id.tv_activity_animtest, R.id.my_widget, R.id.settings, R.id.tv_popupwindow, R.id.tv_download, R.id.tv_test, R.id.tv_activity_anim, R.id.tv_test1, R.id.tv_activity_new_widget,R.id.tv_activity_RxJava})
+    @OnClick({R.id.tv_drag,R.id.tv_activity_animtest, R.id.my_widget, R.id.settings, R.id.tv_popupwindow, R.id.tv_download, R.id.tv_test, R.id.tv_activity_anim, R.id.tv_test1, R.id.tv_activity_new_widget,R.id.tv_activity_RxJava,R.id.tv_activity_record, R.id.tv_activity_vertical_pager, R.id.tv_activity_toast})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.settings:     //设置页面
@@ -121,9 +127,22 @@ public class LeftDrawerFragment extends BaseFragment {
                 openActivity(getContext(),RxJavaTestActivity.class);
                 mainActivity.drawerLayout.closeDrawer(Gravity.LEFT);
                 break;
+            case R.id.tv_activity_record:
+                startActivity(new Intent(getActivity(), RecordActivity.class));
+                break;
+            case R.id.tv_activity_vertical_pager:
+                startActivity(new Intent(getActivity(), ActivityVerticalViewPager.class));
+                break;
             case R.id.tv_activity_animtest:
                 openActivity(getContext(),AnimateTestActivity.class);
                 mainActivity.drawerLayout.closeDrawer(Gravity.LEFT);
+                break;
+            case R.id.tv_activity_toast:
+                ToastUtils.getInstance().showToast("hahahaha");
+                ToastUtils.getInstance().showToast("hahahaha");
+                ToastUtils.getInstance().showToast("hahahaha");
+                ToastUtils.getInstance().showToast("hahahaha");
+                ToastUtils.getInstance().showToast("hahahaha");
                 break;
 
         }
