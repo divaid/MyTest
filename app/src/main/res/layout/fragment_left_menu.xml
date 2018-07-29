@@ -96,9 +96,21 @@
                 style="@style/LeftDrawerFragment_textView"
                 android:text="RxJava测试" />
             <TextView
+                android:id="@+id/tv_activity_record"
+                style="@style/LeftDrawerFragment_textView"
+                android:text="录音动画测试" />
+            <TextView
+                android:id="@+id/tv_activity_vertical_pager"
+                style="@style/LeftDrawerFragment_textView"
+                android:text="纵向viewpager" />
+            <TextView
                 android:id="@+id/tv_activity_animtest"
                 style="@style/LeftDrawerFragment_textView"
                 android:text="动画测试" />
+            <TextView
+                android:id="@+id/tv_activity_toast"
+                style="@style/LeftDrawerFragment_textView"
+                android:text="吐司测试" />
         </LinearLayout>
     </ScrollView>
 
