@@ -1,5 +1,6 @@
 package com.david.mytest.utils;
 
+import android.app.Application;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,13 +35,25 @@ public class ToastUtils implements View.OnAttachStateChangeListener {
         return toastUtils;
     }
 
-    public synchronized void showToast(String message){
+    public synchronized void showLongToast(String msg){
+        if (toast.getDuration() != Toast.LENGTH_LONG) {
+            toast.setDuration(Toast.LENGTH_LONG);
+        }
+        show(msg);
+    }
+
+    public synchronized void showShortToast(String msg){
+        toast.setDuration(Toast.LENGTH_SHORT);
+        show(msg);
+    }
+
+    private synchronized void show(String msg){
         synchronized (messages) {
             boolean showToast = false;
             if (messages.size() == 0)
                 showToast = true;
-            if (!messages.contains(message)) {
-                messages.add(0, message);
+            if (!messages.contains(msg)) {
+                messages.add(0, msg);
             }
             if (showToast) {
                 toast.setText(messages.get(messages.size() - 1));
@@ -49,6 +62,7 @@ public class ToastUtils implements View.OnAttachStateChangeListener {
             }
         }
     }
+
 
     private synchronized void removeMessage(){
         synchronized (messages){
